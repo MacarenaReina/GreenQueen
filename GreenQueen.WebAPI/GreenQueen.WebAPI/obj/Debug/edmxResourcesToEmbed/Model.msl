@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DiscosModelStoreContainer" CdmEntityContainer="DiscosEntities">
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="DiscosModel.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Disco">
+      <EntityTypeMapping TypeName="DiscosModel.Disco">
+        <MappingFragment StoreEntitySet="Disco">
+          <ScalarProperty Name="IdDisco" ColumnName="IdDisco" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Agno" ColumnName="Agno" />
+          <ScalarProperty Name="IdInterprete" ColumnName="IdInterprete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DiscoTipo">
+      <EntityTypeMapping TypeName="DiscosModel.DiscoTipo">
+        <MappingFragment StoreEntitySet="DiscoTipo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdDisco" ColumnName="IdDisco" />
+          <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Interprete">
+      <EntityTypeMapping TypeName="DiscosModel.Interprete">
+        <MappingFragment StoreEntitySet="Interprete">
+          <ScalarProperty Name="Interprete1" ColumnName="Interprete" />
+          <ScalarProperty Name="IdInterprete" ColumnName="IdInterprete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Puntuacion">
+      <EntityTypeMapping TypeName="DiscosModel.Puntuacion">
+        <MappingFragment StoreEntitySet="Puntuacion">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Idcliente" ColumnName="Idcliente" />
+          <ScalarProperty Name="iddisco" ColumnName="iddisco" />
+          <ScalarProperty Name="Puntuacion1" ColumnName="Puntuacion" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipo">
+      <EntityTypeMapping TypeName="DiscosModel.Tipo">
+        <MappingFragment StoreEntitySet="Tipo">
+          <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+          <ScalarProperty Name="tipo1" ColumnName="tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="DiscosModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+          <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+          <ScalarProperty Name="IdUsuarioTipo" ColumnName="IdUsuarioTipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsuarioTipo">
+      <EntityTypeMapping TypeName="DiscosModel.UsuarioTipo">
+        <MappingFragment StoreEntitySet="UsuarioTipo">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
