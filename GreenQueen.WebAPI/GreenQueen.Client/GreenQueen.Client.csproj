@@ -68,6 +68,7 @@
   <ItemGroup>
     <Content Include="dancing2.jpg" />
     <Content Include="diseño.css" />
+    <Content Include="index.js" />
     <Content Include="packages.config" />
     <Content Include="package.json" />
     <None Include="Web.Debug.config">
@@ -76,6 +77,7 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="webpack.config.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />

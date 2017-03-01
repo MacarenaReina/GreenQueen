@@ -5,9 +5,10 @@
     <title>GreenQueen</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Gloria+Hallelujah|Indie+Flower|Lobster|Mr+Dafoe|Pacifico|Shadows+Into+Light|VT323" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Gloria+Hallelujah|Indie+Flower|Lobster|Mr+Dafoe|Pacifico|Shadows+Into+Light|VT323" rel="stylesheet">
+    
     <link rel="stylesheet" type="text/css" href="diseño.css">
 </head>
 <body>
@@ -44,11 +45,9 @@
     <div id="contenido" class="container tab-content">
 
         <div id="listado" class="tab-pane fade in active">
-            <div class="col-sm-4">
+            <div id="discos" class="col-sm-4">
                 <h2><span class="glyphicon glyphicon-cd"></span>Discos</h2>
-                <ul class="list-group">
-                    <li class="list-group-item">19</li>
-                    <li class="list-group-item">Guapa</li>
+                <ul id="listaDiscos" class="list-group">
                 </ul>
             </div>
             <div class="col-sm-4">
@@ -157,5 +156,6 @@
         });
       });
     </script>
+    <script src="./bundle.js"></script>
 </body>
 </html>
