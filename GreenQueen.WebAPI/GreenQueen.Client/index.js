@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 const baseUrl = 'http://localhost:50150';
 
-class App extends Component{
+class App extends Component {
   constructor(props){
     super(props);
     this.state={
@@ -22,21 +22,22 @@ class App extends Component{
   render(){
     const {discs, interpreters, genres} = this.state;
     return(
-      <discList list={discs}/>
+      <DiscList list={discs} />
     )
   }
 }
 
-const discList = (list) => {
+//NO ENTIENDO POR QUE NO VA, YORO
+const DiscList = (list) => {
   return(
     <div>
     {
       list.map(item=>
-        <li class="list-group-item">{item.Titulo}</li>
+        <li key={item.IdDisco} className="list-group-item">{item.Titulo}</li>
       )
     }
     </div>
-  )
+  );
 }
 
 ReactDOM.render(<App />, document.getElementById("listaDiscos"));
