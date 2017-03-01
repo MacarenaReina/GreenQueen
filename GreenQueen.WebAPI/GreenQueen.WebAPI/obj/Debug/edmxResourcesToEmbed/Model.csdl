@@ -112,5 +112,51 @@
       <End Role="UsuarioTipo" EntitySet="UsuarioTipo" />
       <End Role="Usuario" EntitySet="Usuario" />
     </AssociationSet>
+    <FunctionImport Name="discosGenero" IsComposable="true" ReturnType="Collection(DiscosModel.discosGenero_Result)">
+      <Parameter Name="IdGenero" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="discosInterprete" IsComposable="true" ReturnType="Collection(DiscosModel.discosInterprete_Result)">
+      <Parameter Name="IdInterprete" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="generosDisco" IsComposable="true" ReturnType="Collection(DiscosModel.generosDisco_Result)">
+      <Parameter Name="IdDisco" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="generosInterprete" IsComposable="true" ReturnType="Collection(DiscosModel.generosInterprete_Result)">
+      <Parameter Name="IdInterprete" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="interpretesDisco" IsComposable="true" ReturnType="Collection(DiscosModel.interpretesDisco_Result)">
+      <Parameter Name="IdDisco" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="interpretesGenero" IsComposable="true" ReturnType="Collection(DiscosModel.interpretesGenero_Result)">
+      <Parameter Name="IdGenero" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="discosGenero_Result">
+    <Property Type="Int32" Name="IdDisco" Nullable="false" />
+    <Property Type="String" Name="Titulo" Nullable="true" MaxLength="255" />
+    <Property Type="Double" Name="Agno" Nullable="true" />
+    <Property Type="Int32" Name="IdInterprete" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="discosInterprete_Result">
+    <Property Type="Int32" Name="IdDisco" Nullable="false" />
+    <Property Type="String" Name="Titulo" Nullable="true" MaxLength="255" />
+    <Property Type="Double" Name="Agno" Nullable="true" />
+    <Property Type="Int32" Name="IdInterprete" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="generosDisco_Result">
+    <Property Type="Int32" Name="IdTipo" Nullable="false" />
+    <Property Type="String" Name="tipo" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="generosInterprete_Result">
+    <Property Type="Int32" Name="IdTipo" Nullable="false" />
+    <Property Type="String" Name="tipo" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="interpretesDisco_Result">
+    <Property Type="String" Name="Interprete" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="IdInterprete" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="interpretesGenero_Result">
+    <Property Type="String" Name="Interprete" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="IdInterprete" Nullable="false" />
+  </ComplexType>
 </Schema>

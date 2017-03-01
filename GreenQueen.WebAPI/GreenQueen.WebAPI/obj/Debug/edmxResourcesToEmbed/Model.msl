@@ -76,5 +76,57 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="discosGenero" FunctionName="DiscosModel.Store.discosGenero">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DiscosModel.discosGenero_Result">
+          <ScalarProperty Name="IdDisco" ColumnName="IdDisco" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Agno" ColumnName="Agno" />
+          <ScalarProperty Name="IdInterprete" ColumnName="IdInterprete" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="discosInterprete" FunctionName="DiscosModel.Store.discosInterprete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DiscosModel.discosInterprete_Result">
+          <ScalarProperty Name="IdDisco" ColumnName="IdDisco" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Agno" ColumnName="Agno" />
+          <ScalarProperty Name="IdInterprete" ColumnName="IdInterprete" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="generosDisco" FunctionName="DiscosModel.Store.generosDisco">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DiscosModel.generosDisco_Result">
+          <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="generosInterprete" FunctionName="DiscosModel.Store.generosInterprete">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DiscosModel.generosInterprete_Result">
+          <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="interpretesDisco" FunctionName="DiscosModel.Store.interpretesDisco">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DiscosModel.interpretesDisco_Result">
+          <ScalarProperty Name="Interprete" ColumnName="Interprete" />
+          <ScalarProperty Name="IdInterprete" ColumnName="IdInterprete" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="interpretesGenero" FunctionName="DiscosModel.Store.interpretesGenero">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DiscosModel.interpretesGenero_Result">
+          <ScalarProperty Name="Interprete" ColumnName="Interprete" />
+          <ScalarProperty Name="IdInterprete" ColumnName="IdInterprete" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
