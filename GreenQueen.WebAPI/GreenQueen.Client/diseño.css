@@ -1,0 +1,50 @@
+#cabecera div:first-child { padding-top: 2em; padding-bottom: 2em; text-align: left;}
+#cabecera div:last-child { padding-top: 2em; padding-bottom: 2em; text-align: right; }
+#cabecera div { padding-top: 0.7em; padding-bottom: 0.5em; text-align: center; }
+#cabecera { border-bottom: 3px solid black; }
+#contenido { margin-top: 4em; }
+span { margin-right: 0.5em; margin-left:0.5em; }
+.datos { float:left; }
+#prueba3 { clear: left; }
+img { height: 300px; }
+a:hover { text-decoration: none; }
+
+.SamplePath, line {
+        fill:none;
+        stroke:green;
+        stroke-width: 20
+    }
+
+    circle, text {
+        fill: green;
+    }
+
+    .rotate180 {
+        /*-ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);*/
+        transform-origin: initial;
+        transform: translate(-40px, 199px) rotate(180deg);
+    }
+
+    .rotate170 {
+        /*-ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);*/
+        transform-origin: initial;
+        /*transform: translate(-75px, 337px) rotate(170deg);*/
+        transform: translate(31px, 335px) rotate(167deg);
+    }
+
+    text {
+         font-size: 155px;
+         /*font-family: 'Indie Flower', cursive;
+         font-family: 'Mr Dafoe', cursive;
+         font-family: 'Lobster', cursive;
+         font-family: 'Gloria Hallelujah', cursive;*/
+         font-family: 'Pacifico', cursive;
+         /*font-family: 'Amatic SC', cursive;
+         font-family: 'Shadows Into Light', cursive;
+         font-family: 'VT323', monospace;
+         font-weight: bold;*/
+    }

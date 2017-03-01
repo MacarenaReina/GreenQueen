@@ -2,9 +2,160 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>GreenQueen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Gloria+Hallelujah|Indie+Flower|Lobster|Mr+Dafoe|Pacifico|Shadows+Into+Light|VT323" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="diseño.css">
 </head>
 <body>
+    <div id="cabecera" class="container nav nav-tabs">
+        <div class="col-sm-4">
+            <a href="#votos"><button type="button" class="btn btn-success">Discos más votados</button></a>
+        </div>
+        <div class="col-sm-4">
+            <a href="#listado">
+                <svg width="8cm" height="5cm" viewBox="0 0 1000 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
+                    <!--<path class="SamplePath" d="M120,200 C100,100 250,100 250,200 S400,300 400,200" />  -->
+                    <g>
+                        <path class="SamplePath" d="M140,200 C140,100 270,100 270,200" />
+                        <path class="SamplePath rotate180" d="M140,100 C140,0 310,0 310,100"></path>
+                        <path class="SamplePath" d="M100,200 C100,100 200,100 200,-50"></path>
+                        <path class="SamplePath" d="M200,-49 C200,-150 130,-150 145,-49"></path>
+                        <line x1="145" y1="-51" x2="225" y2="330"></line>
+                        <!-- <path class="SamplePath rotate170" d="M140,100 C140,0 310,0 310,100"></path> -->
+                        <path class="SamplePath rotate170" d="M140,50 C140,0 200,0 200,50"></path>
+                        <circle cx="140" cy="201" r="10"></circle>
+                        <circle cx="166" cy="342" r="10"></circle>
 
+                        <text x="290" y="250">reen Queen</text>
+                    </g>
+                </svg>
+            </a>
+        </div>
+        <div class="col-sm-4">
+            <a href="#login"><button type="button" class="btn btn-default">Login</button></a>
+            <a href="#registro"><button type="button" class="btn btn-default">Registrate</button></a>
+        </div>
+    </div>
+    <div class="container"><img class="col-sm-12" src="dancing2.jpg" /></div>
+    <div id="contenido" class="container tab-content">
+
+        <div id="listado" class="tab-pane fade in active">
+            <div class="col-sm-4">
+                <h2><span class="glyphicon glyphicon-cd"></span>Discos</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">19</li>
+                    <li class="list-group-item">Guapa</li>
+                </ul>
+            </div>
+            <div class="col-sm-4">
+                <h2><span class="glyphicon glyphicon-user"></span>Intérpretes</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">Adele</li>
+                    <li class="list-group-item">La Oreja de Van Gogh</li>
+                </ul>
+            </div>
+            <div class="col-sm-4">
+                <h2><span class="glyphicon glyphicon-music"></span>Género</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">Pop</li>
+                    <li class="list-group-item">Rock</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="votos" class="tab-pane fade">
+            <h2>Los 5 mejores discos de La Tierra<span class="glyphicon glyphicon-globe"></span></h2>
+        </div>
+
+        <div id="registro" class="tab-pane fade">
+            <h2>Registro</h2>
+            <form class="form-horizontal">
+                <div class="datos">
+                    <div class="form-group">
+                        <label class="control-label col-sm-1" for="user"><span class="glyphicon glyphicon-user"></span></label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="user" placeholder="Usuario">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-1" for="email"><span class="glyphicon glyphicon-envelope"></span></label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email" placeholder="Correo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-1" for="fechaNac"><span class="glyphicon glyphicon-calendar"></span></label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="fechaNac" placeholder="Fecha de nacimiento">
+                        </div>
+                    </div>
+                </div>
+                <div class="datos">
+                    <div class="form-group">
+                        <label class="control-label col-sm-1" for="password"><span class="glyphicon glyphicon-asterisk"></span></label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="password" placeholder="Contraseña">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-1" for="confirmPassword"><span class="glyphicon glyphicon-asterisk"></span></label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="confirmPassword" placeholder="Confirmar contraseña">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-1" for="fechaRegist"><span class="glyphicon glyphicon-calendar"></span></label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="fechaRegist" placeholder="Fecha de registro">
+                        </div>
+                    </div>
+                </div>
+                <div id="prueba3" class="form-group">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-success">Aceptar</button>
+                        <button type="submit" class="btn btn-danger">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div id="login" class="tab-pane fade">
+            <h2>Login</h2>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="nombre"><span class="glyphicon glyphicon-user"></span></label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="nombre" placeholder="Usuario">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="contrasenia"><span class="glyphicon glyphicon-asterisk"></span></label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="contrasenia" placeholder="Contraseña">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-success">Aceptar</button>
+                        <button type="submit" class="btn btn-danger">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+      $(document).ready(function()
+      {
+        $(".nav-tabs a").click(function(){
+          $(this).tab('show');
+        });
+      });
+    </script>
 </body>
 </html>
