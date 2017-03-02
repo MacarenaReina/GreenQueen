@@ -1,4 +1,4 @@
-﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\alumno\Documents\Visual Studio 2015\Projects\Proyecto\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\Model.edmx'. 
+﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\alumno\Documents\PROYECTO-GIT\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\Model.edmx'. 
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.

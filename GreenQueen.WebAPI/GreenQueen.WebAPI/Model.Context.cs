@@ -12,6 +12,8 @@ namespace GreenQueen.WebAPI
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class DiscosEntities : DbContext
     {
@@ -33,5 +35,65 @@ namespace GreenQueen.WebAPI
         public virtual DbSet<Tipo> Tipo { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<UsuarioTipo> UsuarioTipo { get; set; }
+    
+        [DbFunction("DiscosEntities", "discosGenero")]
+        public virtual IQueryable<discosGenero_Result> discosGenero(Nullable<int> idGenero)
+        {
+            var idGeneroParameter = idGenero.HasValue ?
+                new ObjectParameter("IdGenero", idGenero) :
+                new ObjectParameter("IdGenero", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<discosGenero_Result>("[DiscosEntities].[discosGenero](@IdGenero)", idGeneroParameter);
+        }
+    
+        [DbFunction("DiscosEntities", "discosInterprete")]
+        public virtual IQueryable<discosInterprete_Result> discosInterprete(Nullable<int> idInterprete)
+        {
+            var idInterpreteParameter = idInterprete.HasValue ?
+                new ObjectParameter("IdInterprete", idInterprete) :
+                new ObjectParameter("IdInterprete", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<discosInterprete_Result>("[DiscosEntities].[discosInterprete](@IdInterprete)", idInterpreteParameter);
+        }
+    
+        [DbFunction("DiscosEntities", "generosDisco")]
+        public virtual IQueryable<generosDisco_Result> generosDisco(Nullable<int> idDisco)
+        {
+            var idDiscoParameter = idDisco.HasValue ?
+                new ObjectParameter("IdDisco", idDisco) :
+                new ObjectParameter("IdDisco", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<generosDisco_Result>("[DiscosEntities].[generosDisco](@IdDisco)", idDiscoParameter);
+        }
+    
+        [DbFunction("DiscosEntities", "generosInterprete")]
+        public virtual IQueryable<generosInterprete_Result> generosInterprete(Nullable<int> idInterprete)
+        {
+            var idInterpreteParameter = idInterprete.HasValue ?
+                new ObjectParameter("IdInterprete", idInterprete) :
+                new ObjectParameter("IdInterprete", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<generosInterprete_Result>("[DiscosEntities].[generosInterprete](@IdInterprete)", idInterpreteParameter);
+        }
+    
+        [DbFunction("DiscosEntities", "interpretesDisco")]
+        public virtual IQueryable<interpretesDisco_Result> interpretesDisco(Nullable<int> idDisco)
+        {
+            var idDiscoParameter = idDisco.HasValue ?
+                new ObjectParameter("IdDisco", idDisco) :
+                new ObjectParameter("IdDisco", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<interpretesDisco_Result>("[DiscosEntities].[interpretesDisco](@IdDisco)", idDiscoParameter);
+        }
+    
+        [DbFunction("DiscosEntities", "interpretesGenero")]
+        public virtual IQueryable<interpretesGenero_Result> interpretesGenero(Nullable<int> idGenero)
+        {
+            var idGeneroParameter = idGenero.HasValue ?
+                new ObjectParameter("IdGenero", idGenero) :
+                new ObjectParameter("IdGenero", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<interpretesGenero_Result>("[DiscosEntities].[interpretesGenero](@IdGenero)", idGeneroParameter);
+        }
     }
 }

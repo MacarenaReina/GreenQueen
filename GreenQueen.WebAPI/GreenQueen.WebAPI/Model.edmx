@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DiscosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DiscosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="id" />
@@ -96,6 +96,76 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="discosGenero" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdGenero" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IdDisco" Type="int" Nullable="false" />
+                <Property Name="Titulo" Type="varchar" MaxLength="255" />
+                <Property Name="Agno" Type="float" />
+                <Property Name="IdInterprete" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="discosInterprete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdInterprete" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IdDisco" Type="int" Nullable="false" />
+                <Property Name="Titulo" Type="varchar" MaxLength="255" />
+                <Property Name="Agno" Type="float" />
+                <Property Name="IdInterprete" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="generosDisco" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdDisco" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IdTipo" Type="int" Nullable="false" />
+                <Property Name="tipo" Type="varchar" MaxLength="255" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="generosInterprete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdInterprete" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IdTipo" Type="int" Nullable="false" />
+                <Property Name="tipo" Type="varchar" MaxLength="255" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="interpretesDisco" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdDisco" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Interprete" Type="varchar" MaxLength="255" />
+                <Property Name="IdInterprete" Type="int" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="interpretesGenero" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdGenero" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Interprete" Type="varchar" MaxLength="255" />
+                <Property Name="IdInterprete" Type="int" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <EntityContainer Name="DiscosModelStoreContainer">
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Disco" EntityType="Self.Disco" Schema="dbo" store:Type="Tables" />
@@ -114,8 +184,7 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DiscosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -231,7 +300,53 @@
             <End Role="UsuarioTipo" EntitySet="UsuarioTipo" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
+          <FunctionImport Name="discosGenero" IsComposable="true" ReturnType="Collection(DiscosModel.discosGenero_Result)">
+            <Parameter Name="IdGenero" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="discosInterprete" IsComposable="true" ReturnType="Collection(DiscosModel.discosInterprete_Result)">
+            <Parameter Name="IdInterprete" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="generosDisco" IsComposable="true" ReturnType="Collection(DiscosModel.generosDisco_Result)">
+            <Parameter Name="IdDisco" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="generosInterprete" IsComposable="true" ReturnType="Collection(DiscosModel.generosInterprete_Result)">
+            <Parameter Name="IdInterprete" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="interpretesDisco" IsComposable="true" ReturnType="Collection(DiscosModel.interpretesDisco_Result)">
+            <Parameter Name="IdDisco" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="interpretesGenero" IsComposable="true" ReturnType="Collection(DiscosModel.interpretesGenero_Result)">
+            <Parameter Name="IdGenero" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="discosGenero_Result">
+          <Property Type="Int32" Name="IdDisco" Nullable="false" />
+          <Property Type="String" Name="Titulo" Nullable="true" MaxLength="255" />
+          <Property Type="Double" Name="Agno" Nullable="true" />
+          <Property Type="Int32" Name="IdInterprete" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="discosInterprete_Result">
+          <Property Type="Int32" Name="IdDisco" Nullable="false" />
+          <Property Type="String" Name="Titulo" Nullable="true" MaxLength="255" />
+          <Property Type="Double" Name="Agno" Nullable="true" />
+          <Property Type="Int32" Name="IdInterprete" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="generosDisco_Result">
+          <Property Type="Int32" Name="IdTipo" Nullable="false" />
+          <Property Type="String" Name="tipo" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="generosInterprete_Result">
+          <Property Type="Int32" Name="IdTipo" Nullable="false" />
+          <Property Type="String" Name="tipo" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="interpretesDisco_Result">
+          <Property Type="String" Name="Interprete" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IdInterprete" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="interpretesGenero_Result">
+          <Property Type="String" Name="Interprete" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="IdInterprete" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -313,6 +428,58 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="discosGenero" FunctionName="DiscosModel.Store.discosGenero">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DiscosModel.discosGenero_Result">
+                <ScalarProperty Name="IdDisco" ColumnName="IdDisco" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Agno" ColumnName="Agno" />
+                <ScalarProperty Name="IdInterprete" ColumnName="IdInterprete" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="discosInterprete" FunctionName="DiscosModel.Store.discosInterprete">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DiscosModel.discosInterprete_Result">
+                <ScalarProperty Name="IdDisco" ColumnName="IdDisco" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Agno" ColumnName="Agno" />
+                <ScalarProperty Name="IdInterprete" ColumnName="IdInterprete" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="generosDisco" FunctionName="DiscosModel.Store.generosDisco">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DiscosModel.generosDisco_Result">
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="generosInterprete" FunctionName="DiscosModel.Store.generosInterprete">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DiscosModel.generosInterprete_Result">
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="interpretesDisco" FunctionName="DiscosModel.Store.interpretesDisco">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DiscosModel.interpretesDisco_Result">
+                <ScalarProperty Name="Interprete" ColumnName="Interprete" />
+                <ScalarProperty Name="IdInterprete" ColumnName="IdInterprete" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="interpretesGenero" FunctionName="DiscosModel.Store.interpretesGenero">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DiscosModel.interpretesGenero_Result">
+                <ScalarProperty Name="Interprete" ColumnName="Interprete" />
+                <ScalarProperty Name="IdInterprete" ColumnName="IdInterprete" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

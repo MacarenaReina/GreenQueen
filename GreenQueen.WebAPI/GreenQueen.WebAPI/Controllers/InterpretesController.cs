@@ -18,10 +18,25 @@ namespace GreenQueen.WebAPI.Controllers
     {
         private DiscosEntities db = new DiscosEntities();
 
-        // GET: api/Interpretes
+        // GET: api/Interpretes/GetInterpretes
+        [ActionName("GetInterpretes")]
         public IQueryable<Interprete> GetInterprete()
         {
             return db.Interprete;
+        }
+
+        // GET: api/Interpretes/GetInterpretesDisco/8
+        [ActionName("GetInterpretesDisco")]
+        public IQueryable<interpretesDisco_Result> GetInterpretesDisco(int id)
+        {
+            return db.interpretesDisco(id);
+        }
+
+        // GET: api/Interpretes/GetInterpretesGenero/17
+        [ActionName("GetInterpretesGenero")]
+        public IQueryable<interpretesGenero_Result> GetInterpretesGenero(int id)
+        {
+            return db.interpretesGenero(id);
         }
 
         // GET: api/Interpretes/5
