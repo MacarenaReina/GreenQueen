@@ -21854,8 +21854,13 @@ var DiscList = function DiscList(_ref) {
         list.map(function (item) {
             return _react2.default.createElement(
                 "li",
-                { className: "list-group-item", key: item.IdDisco },
-                item.Titulo
+                { className: "list-group-item justify-content-between", key: item.IdDisco },
+                item.Titulo,
+                _react2.default.createElement(
+                    "span",
+                    { className: "badge badge-default badge-pill" },
+                    item.Agno
+                )
             );
         })
     );

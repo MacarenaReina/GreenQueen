@@ -34,7 +34,10 @@ const DiscList = ({list}) => {
   return(
     <div>
     {list.map(item=>
-              <li className="list-group-item" key={item.IdDisco}>{item.Titulo}</li>
+              <li className="list-group-item justify-content-between" key={item.IdDisco}>
+                  {item.Titulo}
+                  <span className="badge badge-default badge-pill">{item.Agno}</span>
+              </li>
     )}
     </div>
   );
