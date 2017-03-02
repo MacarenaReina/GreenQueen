@@ -21835,21 +21835,27 @@ var App = function (_Component) {
           interpreters = _state.interpreters,
           genres = _state.genres;
 
-      return _react2.default.createElement(DiscList, { list: discs });
+      return _react2.default.createElement(
+        "div",
+        null,
+        discs && _react2.default.createElement(DiscList, { list: discs })
+      );
     }
   }]);
 
   return App;
 }(_react.Component);
 
-var DiscList = function DiscList(list) {
+var DiscList = function DiscList(_ref) {
+  var list = _ref.list;
+
   return _react2.default.createElement(
     "div",
     null,
     list.map(function (item) {
       return _react2.default.createElement(
         "li",
-        { key: item.IdDisco, className: "list-group-item" },
+        { className: "list-group-item", key: item.IdDisco },
         item.Titulo
       );
     })

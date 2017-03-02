@@ -22,20 +22,22 @@ class App extends Component {
   render(){
     const {discs, interpreters, genres} = this.state;
     return(
-      <DiscList list={discs} />
+        <div>
+            {discs &&
+                <DiscList list={discs} />
+            }
+        </div>
     )
   }
 }
 
-//NO ENTIENDO POR QUE NO VA, YORO
-const DiscList = (list) => {
+//FUNCIONA, ESTÁ VIVO
+const DiscList = ({list}) => {
   return(
     <div>
-    {
-      list.map(item=>
-        <li key={item.IdDisco} className="list-group-item">{item.Titulo}</li>
-      )
-    }
+    {list.map(item=>
+              <li className="list-group-item" key={item.IdDisco}>{item.Titulo}</li>
+    )}
     </div>
   );
 }
