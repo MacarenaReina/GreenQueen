@@ -131,7 +131,8 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="contrasenia"><span class="glyphicon glyphicon-asterisk"></span></label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control" id="contrasenia" placeholder="Contraseña">
+                        <input type="password" class="form-control" id="contrasenia" placeholder="Contraseña" readonly>
+                        <div id="teclado"></div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -157,13 +158,27 @@
         </ul>
     </div>
 
-    <script>
+    <script>       
       $(document).ready(function()
       {
         $(".nav-tabs a").click(function(){
           $(this).tab('show');
         });
+
+        var teclado = $("#teclado");
+        for (var contador = 0; contador <= 9; contador++)
+        {
+            var boton = $("<button class='btn btn-default' onclick='escribirClave(this)'></button>").text(contador);
+            $(teclado).append(boton);
+        }
       });
+
+      function escribirClave(contenido)
+      {
+          var valorBoton = $(contenido).text();
+          $("#contrasenia").val(valorBoton);
+      }
+
     </script>
     <script src="./bundle.js"></script>
 </body>
