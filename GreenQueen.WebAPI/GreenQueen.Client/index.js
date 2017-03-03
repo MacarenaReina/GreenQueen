@@ -4,44 +4,61 @@ import ReactDOM from "react-dom";
 const baseUrl = 'http://localhost:50150/api/';
 
 class Discos extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      discs: null
-    };
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            discs: null,
+            votes: null
+        };
+    }
 
-  componentDidMount(){
-    fetch(`${baseUrl}Discos/GetDiscos`)
-    .then(response => response.json())
-    .then(discs => this.setState({discs}));
-  }
+    componentDidMount() {
+        fetch(`${baseUrl}Discos/GetDiscos`)
+            .then(response => response.json())
+            .then(discs => this.setState({ discs }));
 
-  render(){
-    const {discs} = this.state;
-    return(
+        //Falta pillar puntuaciones
+        fetch(`${baseUrl}Discos/GetDiscos`)
+            .then(response => response.json())
+            .then(discs => this.setState({ discs }));
+    }
+
+    render() {
+        const {discs} = this.state;
+        return (
+            <div>
+                {discs && votes
+                    ? <DiscList list={discs} votes={votes} />
+                    : <p>Cargando...</p>
+                }
+            </div>
+        )
+    }
+}
+
+const DiscList = ({list, votes}) => {
+    let actualVotes;
+    return (
         <div>
-            {discs
-                ? <DiscList list={discs} />
-                : <p>Cargando...</p>
-            }
+            {list.map(item => {
+                actualVotes = [];
+                votes.map(vote => {
+                    if (vote.IdDisco == item.IdDisco) {
+                        actualVotes.push(vote.IdDisco);
+                    }
+                });
+                const average = actualVotes.reduce(({ a, b }) => {
+                    return a + b;
+                }) / actualVotes.length;
+                <li className="list-group-item" key={item.IdDisco}>{item.Titulo}
+                    <p className="justify-content-between"><span className="badge badge-default badge-pill">{item.Agno}</span><span>Puntuación: {actualVotes}</span></p>
+                </li>
+            })}
         </div>
-    )
-  }
+    );
 }
 
-const DiscList = ({list}) => {
-  return(
-    <div>
-    {list.map(item=>
-              <li className="list-group-item justify-content-between" key={item.IdDisco}>
-                  {item.Titulo}
-                  <span className="badge badge-default badge-pill">{item.Agno}</span>
-              </li>
-    )}
-    </div>
-  );
-}
+
 
 class Interpretes extends Component {
     constructor(props) {

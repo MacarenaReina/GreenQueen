@@ -21809,7 +21809,8 @@ var Discos = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Discos.__proto__ || Object.getPrototypeOf(Discos)).call(this, props));
 
         _this.state = {
-            discs: null
+            discs: null,
+            votes: null
         };
         return _this;
     }
@@ -21818,6 +21819,12 @@ var Discos = function (_Component) {
         key: "componentDidMount",
         value: function componentDidMount() {
             var _this2 = this;
+
+            fetch(baseUrl + "Discos/GetDiscos").then(function (response) {
+                return response.json();
+            }).then(function (discs) {
+                return _this2.setState({ discs: discs });
+            });
 
             fetch(baseUrl + "Discos/GetDiscos").then(function (response) {
                 return response.json();
@@ -21833,7 +21840,7 @@ var Discos = function (_Component) {
             return _react2.default.createElement(
                 "div",
                 null,
-                discs ? _react2.default.createElement(DiscList, { list: discs }) : _react2.default.createElement(
+                discs && votes ? _react2.default.createElement(DiscList, { list: discs, votes: votes }) : _react2.default.createElement(
                     "p",
                     null,
                     "Cargando..."
@@ -21846,20 +21853,43 @@ var Discos = function (_Component) {
 }(_react.Component);
 
 var DiscList = function DiscList(_ref) {
-    var list = _ref.list;
+    var list = _ref.list,
+        votes = _ref.votes;
 
+    var actualVotes = void 0;
     return _react2.default.createElement(
         "div",
         null,
         list.map(function (item) {
-            return _react2.default.createElement(
+            actualVotes = [];
+            votes.map(function (vote) {
+                if (vote.IdDisco == item.IdDisco) {
+                    actualVotes.push(vote.IdDisco);
+                }
+            });
+            var average = actualVotes.reduce(function (_ref2) {
+                var a = _ref2.a,
+                    b = _ref2.b;
+
+                return a + b;
+            }) / actualVotes.length;
+            _react2.default.createElement(
                 "li",
-                { className: "list-group-item justify-content-between", key: item.IdDisco },
+                { className: "list-group-item", key: item.IdDisco },
                 item.Titulo,
                 _react2.default.createElement(
-                    "span",
-                    { className: "badge badge-default badge-pill" },
-                    item.Agno
+                    "p",
+                    { className: "justify-content-between" },
+                    _react2.default.createElement(
+                        "span",
+                        { className: "badge badge-default badge-pill" },
+                        item.Agno
+                    ),
+                    _react2.default.createElement(
+                        "span",
+                        null,
+                        actualVotes
+                    )
                 )
             );
         })
@@ -21911,8 +21941,8 @@ var Interpretes = function (_Component2) {
     return Interpretes;
 }(_react.Component);
 
-var InterpretersList = function InterpretersList(_ref2) {
-    var list = _ref2.list;
+var InterpretersList = function InterpretersList(_ref3) {
+    var list = _ref3.list;
 
     return _react2.default.createElement(
         "div",
@@ -21972,8 +22002,8 @@ var Generos = function (_Component3) {
     return Generos;
 }(_react.Component);
 
-var GenresList = function GenresList(_ref3) {
-    var list = _ref3.list;
+var GenresList = function GenresList(_ref4) {
+    var list = _ref4.list;
 
     return _react2.default.createElement(
         "div",
