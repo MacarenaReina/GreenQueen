@@ -1,28 +1,109 @@
+/*body { background-color: #E2BBFF;}*/
+body { background-color: #ccccff;}
 #cabecera div:first-child { padding-top: 2em; padding-bottom: 2em; text-align: left;}
 #cabecera div:last-child { padding-top: 2em; padding-bottom: 2em; text-align: right; }
 #cabecera div { padding-top: 0.7em; padding-bottom: 0.5em; text-align: center; }
-#cabecera { border-bottom: 3px solid black; }
-#contenido { margin-top: 4em; }
+/*#cabecera { border-bottom: 3px solid black; }*/
+#cabecera { border-bottom: none; }
+.nav { padding: 0 15px;}
+/*#contenido { margin-top: 4em; }*/
 span { margin-right: 0.5em; margin-left:0.5em; }
 .datos { float:left; }
 #prueba3 { clear: left; }
-img { height: 300px; }
 a:hover { text-decoration: none; }
 
-li:hover { 
-    background-color: #FFCCFF;
+.parallax {
+    background-image: url("live-concert.jpg");
+    min-height: 400px; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.footer {
+    border-top: 4px solid #1C2F57;
+}
+
+.footer > img{
+    width: 100%;
+}
+
+div.img-map {
+  position: relative
+}
+ul.urls li {
+  position: absolute;
+  display: none;
+}
+
+div.img-map:hover ul.urls li {
+  display: block;
+}
+
+.list-group li:hover { 
+    background-color: #ccffcc; /* #FFCCFF */
     cursor: pointer;
     font-weight: bold;
 }
 
+ul.urls li a {
+    position: absolute;
+    top: 100px;
+    left: 72px;
+    background: #FFF;
+    opacity: 0.65;
+    /* margin: 10px 0 0 0; */
+    padding: 0.3em;
+    border: 2px solid;
+}
+
+ul.urls li a {
+  display: none;
+}
+ul.urls li:hover a {
+  display: block;
+}
+
+ul.urls li#url-facebook {
+    width: 130px;
+    height: 130px;
+    top: 35px;
+    left: 105px;
+}
+ul.urls li#url-instagram {
+    width: 130px;
+    height: 130px;
+    top: 35px;
+    left: 339px;
+}
+ul.urls li#url-linkedin {
+    width: 130px;
+    height: 130px;
+    top: 35px;
+    left: 590px;
+}
+ul.urls li#url-mail {
+    width: 130px;
+    height: 130px;
+    top: 35px;
+    left: 854px;
+}
+ul.urls li#url-phone {
+    width: 130px;
+    height: 130px;
+    top: 35px;
+    left: 1115px;
+}
+
 .SamplePath, line {
-        fill:none;
-        stroke:green;
+        fill: none;
+        stroke: #009933; /* green */
         stroke-width: 20
     }
 
 circle, text {
-    fill: green;
+    fill: #009933; /* green */
 }
 
 .rotate180 {
