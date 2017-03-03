@@ -9,42 +9,48 @@ span { margin-right: 0.5em; margin-left:0.5em; }
 img { height: 300px; }
 a:hover { text-decoration: none; }
 
+li:hover { 
+    background-color: #FFCCFF;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 .SamplePath, line {
         fill:none;
         stroke:green;
         stroke-width: 20
     }
 
-    circle, text {
-        fill: green;
-    }
+circle, text {
+    fill: green;
+}
 
-    .rotate180 {
-        /*-ms-transform: rotate(180deg);
-        -webkit-transform: rotate(180deg);
-        transform: rotate(180deg);*/
-        transform-origin: initial;
-        transform: translate(-40px, 199px) rotate(180deg);
-    }
+.rotate180 {
+    /*-ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);*/
+    transform-origin: initial;
+    transform: translate(-40px, 199px) rotate(180deg);
+}
 
-    .rotate170 {
-        /*-ms-transform: rotate(180deg);
-        -webkit-transform: rotate(180deg);
-        transform: rotate(180deg);*/
-        transform-origin: initial;
-        /*transform: translate(-75px, 337px) rotate(170deg);*/
-        transform: translate(31px, 335px) rotate(167deg);
-    }
+.rotate170 {
+    /*-ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);*/
+    transform-origin: initial;
+    /*transform: translate(-75px, 337px) rotate(170deg);*/
+    transform: translate(31px, 335px) rotate(167deg);
+}
 
-    text {
-         font-size: 155px;
-         /*font-family: 'Indie Flower', cursive;
-         font-family: 'Mr Dafoe', cursive;
-         font-family: 'Lobster', cursive;
-         font-family: 'Gloria Hallelujah', cursive;*/
-         font-family: 'Pacifico', cursive;
-         /*font-family: 'Amatic SC', cursive;
-         font-family: 'Shadows Into Light', cursive;
-         font-family: 'VT323', monospace;
-         font-weight: bold;*/
-    }
+text {
+        font-size: 155px;
+        /*font-family: 'Indie Flower', cursive;
+        font-family: 'Mr Dafoe', cursive;
+        font-family: 'Lobster', cursive;
+        font-family: 'Gloria Hallelujah', cursive;*/
+        font-family: 'Pacifico', cursive;
+        /*font-family: 'Amatic SC', cursive;
+        font-family: 'Shadows Into Light', cursive;
+        font-family: 'VT323', monospace;
+        font-weight: bold;*/
+}
