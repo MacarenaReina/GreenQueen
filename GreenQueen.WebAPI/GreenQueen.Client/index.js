@@ -3,12 +3,13 @@ import ReactDOM from "react-dom";
 
 const baseUrl = 'http://localhost:50150/api/';
 
-class Discos extends Component {
+class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            discs: null/*,
-            votes: null*/
+            discs: null,
+            interpreters: null,
+            genres: null
         };
     }
 
@@ -16,76 +17,68 @@ class Discos extends Component {
         fetch(`${baseUrl}Discos/GetDiscos`)
             .then(response => response.json())
             .then(discs => this.setState({ discs }));
-
-        //Falta pillar puntuaciones
-        //fetch(`${baseUrl}Discos/GetDiscos`)
-        //    .then(response => response.json())
-        //    .then(discs => this.setState({ discs }));
-    }
-
-    render() {
-        const {discs} = this.state;
-        return (
-            <div>
-                {discs //&& votes
-                    ? <DiscList list={discs} /* votes={votes} */ />
-                    : <p>Cargando...</p>
-                }
-            </div>
-        )
-    }
-}
-
-const DiscList = ({list/*, votes*/}) => {
-    //let actualVotes;
-    return (
-        <div>
-            {list.map(item => //{
-                //actualVotes = [];
-                //votes.map(vote => {
-                //    if (vote.IdDisco == item.IdDisco) {
-                //        actualVotes.push(vote.IdDisco);
-                //    }
-                //});
-                //const average = actualVotes.reduce(({ a, b }) => {
-                //    return a + b;
-                //}) / actualVotes.length;
-                <li className="list-group-item" key={item.IdDisco}>{item.Titulo}
-                    <p className="justify-content-between"><span className="badge badge-default badge-pill">{item.Agno}</span></p> //<span>Puntuación: {actualVotes}</span>
-                </li>
-            //}
-            )}
-        </div>
-    );
-}
-
-
-
-class Interpretes extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            interpreters: null
-        };
-    }
-
-    componentDidMount() {
         fetch(`${baseUrl}Interpretes/GetInterpretes`)
             .then(response => response.json())
             .then(interpreters => this.setState({ interpreters }));
+        fetch(`${baseUrl}Generos/GetGeneros`)
+            .then(response => response.json())
+            .then(genres => this.setState({ genres }));
     }
 
     render() {
-        const {interpreters} = this.state;
+        const {discs, interpreters, genres} = this.state;
         return (
             <div>
-                {interpreters
-                    ? <InterpretersList list={interpreters} />
-                    : <p>Cargando...</p>
-                }
+                <div className="col-sm-4">
+                    <h2><span className="glyphicon glyphicon-cd"></span>Discos</h2>
+                    <ul id="listaDiscos" className="list-group">
+                        {discs
+                            ? <DiscList list={discs} />
+                            : <p>Cargando...</p>
+                        }
+                    </ul>
+                </div>
+                <div className="col-sm-4">
+                    <h2><span className="glyphicon glyphicon-user"></span>Intérpretes</h2>
+                    <ul id="listaInterpretes" className="list-group">
+                        {interpreters
+                            ? <InterpretersList list={interpreters} />
+                            : <p>Cargando...</p>
+                        }
+                    </ul>
+                </div>
+                <div className="col-sm-4">
+                    <h2><span className="glyphicon glyphicon-music"></span>Géneros</h2>
+                    <ul id="listaGeneros" className="list-group">
+                        {genres
+                            ? <GenresList list={genres} />
+                            : <p>Cargando...</p>
+                        }
+                    </ul>
+                </div>
             </div>
-        )
+        );
     }
+}
+
+const DiscList = ({list}) => {
+    return (
+        <div>
+            {list.map(item =>
+                <li className="list-group-item" key={item.IdDisco}>{item.Titulo}
+                    <div className="justify-content-between"><span className="badge badge-default badge-pill">{
+                        item.Agno
+                            ? item.Agno
+                            : "Desconocido"
+                    }</span><span>Puntuación: {
+                            item.Puntuacion
+                                ? item.Puntuacion
+                                : "No hay"
+                    }</span></div>
+                </li>
+            )}
+        </div>
+    );
 }
 
 const InterpretersList = ({list}) => {
@@ -98,33 +91,6 @@ const InterpretersList = ({list}) => {
     );
 }
 
-class Generos extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            genres: null
-        };
-    }
-
-    componentDidMount() {
-        fetch(`${baseUrl}Generos/GetGeneros`)
-            .then(response => response.json())
-            .then(genres => this.setState({ genres }));
-    }
-
-    render() {
-        const {genres} = this.state;
-        return (
-            <div>
-                {genres
-                    ? <GenresList list={genres} />
-                    : <p>Cargando...</p>
-                }
-            </div>
-        )
-    }
-}
-
 const GenresList = ({list}) => {
     return (
         <div>
@@ -135,6 +101,4 @@ const GenresList = ({list}) => {
     );
 }
 
-ReactDOM.render(<Discos />, document.getElementById("listaDiscos"));
-ReactDOM.render(<Interpretes />, document.getElementById("listaInterpretes"));
-ReactDOM.render(<Generos />, document.getElementById("listaGeneros"));
+ReactDOM.render(<App />, document.getElementById("listado"));

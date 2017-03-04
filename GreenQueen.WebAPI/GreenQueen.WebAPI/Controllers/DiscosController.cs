@@ -15,17 +15,10 @@ namespace GreenQueen.WebAPI.Controllers
 
         // GET: api/Discos/GetDiscos
         [ActionName("GetDiscos")]
-        public IQueryable<Disco> GetDisco()
+        public IQueryable<discosConPuntuacion_Result> GetDisco()
         {
-            return db.Disco;
+            return db.discosConPuntuacion();
         }
-
-        // GET: api/Discos/GetDiscos
-        //[ActionName("GetDiscos")]
-        //public IQueryable<discosConPuntuacion_Result> GetDisco()
-        //{
-        //    return db.discosConPuntuacion();
-        //}
 
         // GET: api/Discos/GetDiscosInterprete/7
         [ActionName("GetDiscosInterprete")]
