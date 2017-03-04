@@ -131,6 +131,7 @@
       <Parameter Name="IdGenero" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="discosConPuntuacion" IsComposable="true" ReturnType="Collection(DiscosModel.discosConPuntuacion_Result)" />
+    <FunctionImport Name="mejoresDiscos" IsComposable="true" ReturnType="Collection(DiscosModel.mejoresDiscos_Result)" />
   </EntityContainer>
   <ComplexType Name="discosGenero_Result">
     <Property Type="Int32" Name="IdDisco" Nullable="false" />
@@ -161,6 +162,13 @@
     <Property Type="Int32" Name="IdInterprete" Nullable="false" />
   </ComplexType>
   <ComplexType Name="discosConPuntuacion_Result">
+    <Property Type="Int32" Name="IdDisco" Nullable="false" />
+    <Property Type="String" Name="Titulo" Nullable="true" MaxLength="255" />
+    <Property Type="Double" Name="Agno" Nullable="true" />
+    <Property Type="Int32" Name="IdInterprete" Nullable="true" />
+    <Property Type="Int32" Name="Puntuacion" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="mejoresDiscos_Result">
     <Property Type="Int32" Name="IdDisco" Nullable="false" />
     <Property Type="String" Name="Titulo" Nullable="true" MaxLength="255" />
     <Property Type="Double" Name="Agno" Nullable="true" />

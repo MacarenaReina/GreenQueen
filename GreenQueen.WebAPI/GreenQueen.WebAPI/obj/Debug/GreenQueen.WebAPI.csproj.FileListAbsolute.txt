@@ -148,7 +148,6 @@ C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQu
 C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\bin\es\System.Net.Http.Formatting.resources.dll
 C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\bin\es\System.Web.Http.resources.dll
 C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\bin\es\System.Web.Http.WebHost.resources.dll
-C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\obj\Debug\GreenQueen.WebAPI.csprojResolveAssemblyReference.cache
 C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\obj\Debug\GreenQueen.WebAPI.dll
 C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\obj\Debug\GreenQueen.WebAPI.pdb
 C:\Users\alumno\Documents\PROYECTO-GIT\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\bin\ApplicationInsights.config
@@ -253,3 +252,5 @@ C:\Users\alumno\Documents\PROYECTO\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAP
 C:\Users\alumno\Documents\PROYECTO\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\obj\Debug\GreenQueen.WebAPI.csprojResolveAssemblyReference.cache
 C:\Users\alumno\Documents\PROYECTO\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\obj\Debug\GreenQueen.WebAPI.dll
 C:\Users\alumno\Documents\PROYECTO\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\obj\Debug\GreenQueen.WebAPI.pdb
+C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\bin\GreenQueen.WebAPI.dll.CodeAnalysisLog.xml
+C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\bin\GreenQueen.WebAPI.dll.lastcodeanalysissucceeded
