@@ -96,6 +96,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="discosConPuntuacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IdDisco" Type="int" Nullable="false" />
+                <Property Name="Titulo" Type="varchar" MaxLength="255" />
+                <Property Name="Agno" Type="float" />
+                <Property Name="IdInterprete" Type="int" />
+                <Property Name="Puntuacion" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="discosGenero" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdGenero" Type="int" Mode="In" />
           <ReturnType>
@@ -162,6 +175,19 @@
               <RowType>
                 <Property Name="Interprete" Type="varchar" MaxLength="255" />
                 <Property Name="IdInterprete" Type="int" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="mejoresDiscos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IdDisco" Type="int" Nullable="false" />
+                <Property Name="Titulo" Type="varchar" MaxLength="255" />
+                <Property Name="Agno" Type="float" />
+                <Property Name="IdInterprete" Type="int" />
+                <Property Name="Puntuacion" Type="int" />
               </RowType>
             </CollectionType>
           </ReturnType>
@@ -301,23 +327,25 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
           <FunctionImport Name="discosGenero" IsComposable="true" ReturnType="Collection(DiscosModel.discosGenero_Result)">
-            <Parameter Name="IdGenero" Mode="In" Type="Int32" />
+          <Parameter Name="IdGenero" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="discosInterprete" IsComposable="true" ReturnType="Collection(DiscosModel.discosInterprete_Result)">
-            <Parameter Name="IdInterprete" Mode="In" Type="Int32" />
+          <Parameter Name="IdInterprete" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="generosDisco" IsComposable="true" ReturnType="Collection(DiscosModel.generosDisco_Result)">
-            <Parameter Name="IdDisco" Mode="In" Type="Int32" />
+          <Parameter Name="IdDisco" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="generosInterprete" IsComposable="true" ReturnType="Collection(DiscosModel.generosInterprete_Result)">
-            <Parameter Name="IdInterprete" Mode="In" Type="Int32" />
+          <Parameter Name="IdInterprete" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="interpretesDisco" IsComposable="true" ReturnType="Collection(DiscosModel.interpretesDisco_Result)">
-            <Parameter Name="IdDisco" Mode="In" Type="Int32" />
+          <Parameter Name="IdDisco" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="interpretesGenero" IsComposable="true" ReturnType="Collection(DiscosModel.interpretesGenero_Result)">
-            <Parameter Name="IdGenero" Mode="In" Type="Int32" />
+          <Parameter Name="IdGenero" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="discosConPuntuacion" IsComposable="true" ReturnType="Collection(DiscosModel.discosConPuntuacion_Result)" />
+          <FunctionImport Name="mejoresDiscos" IsComposable="true" ReturnType="Collection(DiscosModel.mejoresDiscos_Result)" />
         </EntityContainer>
         <ComplexType Name="discosGenero_Result">
           <Property Type="Int32" Name="IdDisco" Nullable="false" />
@@ -346,6 +374,20 @@
         <ComplexType Name="interpretesGenero_Result">
           <Property Type="String" Name="Interprete" Nullable="true" MaxLength="255" />
           <Property Type="Int32" Name="IdInterprete" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="discosConPuntuacion_Result">
+          <Property Type="Int32" Name="IdDisco" Nullable="false" />
+          <Property Type="String" Name="Titulo" Nullable="true" MaxLength="255" />
+          <Property Type="Double" Name="Agno" Nullable="true" />
+          <Property Type="Int32" Name="IdInterprete" Nullable="true" />
+          <Property Type="Int32" Name="Puntuacion" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="mejoresDiscos_Result">
+          <Property Type="Int32" Name="IdDisco" Nullable="false" />
+          <Property Type="String" Name="Titulo" Nullable="true" MaxLength="255" />
+          <Property Type="Double" Name="Agno" Nullable="true" />
+          <Property Type="Int32" Name="IdInterprete" Nullable="true" />
+          <Property Type="Int32" Name="Puntuacion" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -477,6 +519,28 @@
               <ComplexTypeMapping TypeName="DiscosModel.interpretesGenero_Result">
                 <ScalarProperty Name="Interprete" ColumnName="Interprete" />
                 <ScalarProperty Name="IdInterprete" ColumnName="IdInterprete" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="discosConPuntuacion" FunctionName="DiscosModel.Store.discosConPuntuacion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DiscosModel.discosConPuntuacion_Result">
+                <ScalarProperty Name="IdDisco" ColumnName="IdDisco" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Agno" ColumnName="Agno" />
+                <ScalarProperty Name="IdInterprete" ColumnName="IdInterprete" />
+                <ScalarProperty Name="Puntuacion" ColumnName="Puntuacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="mejoresDiscos" FunctionName="DiscosModel.Store.mejoresDiscos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DiscosModel.mejoresDiscos_Result">
+                <ScalarProperty Name="IdDisco" ColumnName="IdDisco" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Agno" ColumnName="Agno" />
+                <ScalarProperty Name="IdInterprete" ColumnName="IdInterprete" />
+                <ScalarProperty Name="Puntuacion" ColumnName="Puntuacion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -151,6 +151,9 @@
     <Compile Include="Disco.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="discosConPuntuacion_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="discosGenero_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -176,6 +179,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="interpretesGenero_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mejoresDiscos_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model.Context.cs">

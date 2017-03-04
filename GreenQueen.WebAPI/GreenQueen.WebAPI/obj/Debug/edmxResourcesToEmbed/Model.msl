@@ -128,5 +128,27 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="discosConPuntuacion" FunctionName="DiscosModel.Store.discosConPuntuacion">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DiscosModel.discosConPuntuacion_Result">
+          <ScalarProperty Name="IdDisco" ColumnName="IdDisco" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Agno" ColumnName="Agno" />
+          <ScalarProperty Name="IdInterprete" ColumnName="IdInterprete" />
+          <ScalarProperty Name="Puntuacion" ColumnName="Puntuacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="mejoresDiscos" FunctionName="DiscosModel.Store.mejoresDiscos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DiscosModel.mejoresDiscos_Result">
+          <ScalarProperty Name="IdDisco" ColumnName="IdDisco" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Agno" ColumnName="Agno" />
+          <ScalarProperty Name="IdInterprete" ColumnName="IdInterprete" />
+          <ScalarProperty Name="Puntuacion" ColumnName="Puntuacion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

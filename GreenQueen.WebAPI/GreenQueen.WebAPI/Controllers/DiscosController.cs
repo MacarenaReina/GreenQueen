@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using GreenQueen.WebAPI;
 using System.Web.Http.Cors;
 
 namespace GreenQueen.WebAPI.Controllers
@@ -20,9 +15,16 @@ namespace GreenQueen.WebAPI.Controllers
 
         // GET: api/Discos/GetDiscos
         [ActionName("GetDiscos")]
-        public IQueryable<Disco> GetDisco()
+        public IQueryable<discosConPuntuacion_Result> GetDisco()
         {
-            return db.Disco;
+            return db.discosConPuntuacion();
+        }
+
+        // GET: api/Discos/MejoresDiscos
+        [ActionName("MejoresDiscos")]
+        public IQueryable<mejoresDiscos_Result> MejoresDiscos()
+        {
+            return db.mejoresDiscos();
         }
 
         // GET: api/Discos/GetDiscosInterprete/7

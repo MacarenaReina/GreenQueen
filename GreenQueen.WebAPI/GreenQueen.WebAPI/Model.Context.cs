@@ -95,5 +95,17 @@ namespace GreenQueen.WebAPI
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<interpretesGenero_Result>("[DiscosEntities].[interpretesGenero](@IdGenero)", idGeneroParameter);
         }
+    
+        [DbFunction("DiscosEntities", "discosConPuntuacion")]
+        public virtual IQueryable<discosConPuntuacion_Result> discosConPuntuacion()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<discosConPuntuacion_Result>("[DiscosEntities].[discosConPuntuacion]()");
+        }
+    
+        [DbFunction("DiscosEntities", "mejoresDiscos")]
+        public virtual IQueryable<mejoresDiscos_Result> mejoresDiscos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<mejoresDiscos_Result>("[DiscosEntities].[mejoresDiscos]()");
+        }
     }
 }

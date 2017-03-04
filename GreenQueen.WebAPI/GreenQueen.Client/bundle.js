@@ -21800,21 +21800,23 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var baseUrl = 'http://localhost:50150/api/';
 
-var Discos = function (_Component) {
-    _inherits(Discos, _Component);
+var App = function (_Component) {
+    _inherits(App, _Component);
 
-    function Discos(props) {
-        _classCallCheck(this, Discos);
+    function App(props) {
+        _classCallCheck(this, App);
 
-        var _this = _possibleConstructorReturn(this, (Discos.__proto__ || Object.getPrototypeOf(Discos)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
         _this.state = {
-            discs: null
+            discs: null,
+            interpreters: null,
+            genres: null
         };
         return _this;
     }
 
-    _createClass(Discos, [{
+    _createClass(App, [{
         key: "componentDidMount",
         value: function componentDidMount() {
             var _this2 = this;
@@ -21824,25 +21826,90 @@ var Discos = function (_Component) {
             }).then(function (discs) {
                 return _this2.setState({ discs: discs });
             });
+            fetch(baseUrl + "Interpretes/GetInterpretes").then(function (response) {
+                return response.json();
+            }).then(function (interpreters) {
+                return _this2.setState({ interpreters: interpreters });
+            });
+            fetch(baseUrl + "Generos/GetGeneros").then(function (response) {
+                return response.json();
+            }).then(function (genres) {
+                return _this2.setState({ genres: genres });
+            });
         }
     }, {
         key: "render",
         value: function render() {
-            var discs = this.state.discs;
+            var _state = this.state,
+                discs = _state.discs,
+                interpreters = _state.interpreters,
+                genres = _state.genres;
 
             return _react2.default.createElement(
                 "div",
                 null,
-                discs ? _react2.default.createElement(DiscList, { list: discs }) : _react2.default.createElement(
-                    "p",
-                    null,
-                    "Cargando..."
+                _react2.default.createElement(
+                    "div",
+                    { className: "col-sm-4" },
+                    _react2.default.createElement(
+                        "h2",
+                        null,
+                        _react2.default.createElement("span", { className: "glyphicon glyphicon-cd" }),
+                        "Discos"
+                    ),
+                    _react2.default.createElement(
+                        "ul",
+                        { id: "listaDiscos", className: "list-group" },
+                        discs ? _react2.default.createElement(DiscList, { list: discs }) : _react2.default.createElement(
+                            "p",
+                            null,
+                            "Cargando..."
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "col-sm-4" },
+                    _react2.default.createElement(
+                        "h2",
+                        null,
+                        _react2.default.createElement("span", { className: "glyphicon glyphicon-user" }),
+                        "Int\xE9rpretes"
+                    ),
+                    _react2.default.createElement(
+                        "ul",
+                        { id: "listaInterpretes", className: "list-group" },
+                        interpreters ? _react2.default.createElement(InterpretersList, { list: interpreters }) : _react2.default.createElement(
+                            "p",
+                            null,
+                            "Cargando..."
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "col-sm-4" },
+                    _react2.default.createElement(
+                        "h2",
+                        null,
+                        _react2.default.createElement("span", { className: "glyphicon glyphicon-music" }),
+                        "G\xE9neros"
+                    ),
+                    _react2.default.createElement(
+                        "ul",
+                        { id: "listaGeneros", className: "list-group" },
+                        genres ? _react2.default.createElement(GenresList, { list: genres }) : _react2.default.createElement(
+                            "p",
+                            null,
+                            "Cargando..."
+                        )
+                    )
                 )
             );
         }
     }]);
 
-    return Discos;
+    return App;
 }(_react.Component);
 
 var DiscList = function DiscList(_ref) {
@@ -21854,62 +21921,27 @@ var DiscList = function DiscList(_ref) {
         list.map(function (item) {
             return _react2.default.createElement(
                 "li",
-                { className: "list-group-item justify-content-between", key: item.IdDisco },
+                { className: "list-group-item", key: item.IdDisco },
                 item.Titulo,
                 _react2.default.createElement(
-                    "span",
-                    { className: "badge badge-default badge-pill" },
-                    item.Agno
+                    "div",
+                    { className: "justify-content-between" },
+                    _react2.default.createElement(
+                        "span",
+                        { className: "badge badge-default badge-pill" },
+                        item.Agno ? item.Agno : "Desconocido"
+                    ),
+                    _react2.default.createElement(
+                        "span",
+                        null,
+                        "Puntuaci\xF3n: ",
+                        item.Puntuacion ? item.Puntuacion : "No hay"
+                    )
                 )
             );
         })
     );
 };
-
-var Interpretes = function (_Component2) {
-    _inherits(Interpretes, _Component2);
-
-    function Interpretes(props) {
-        _classCallCheck(this, Interpretes);
-
-        var _this3 = _possibleConstructorReturn(this, (Interpretes.__proto__ || Object.getPrototypeOf(Interpretes)).call(this, props));
-
-        _this3.state = {
-            interpreters: null
-        };
-        return _this3;
-    }
-
-    _createClass(Interpretes, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            var _this4 = this;
-
-            fetch(baseUrl + "Interpretes/GetInterpretes").then(function (response) {
-                return response.json();
-            }).then(function (interpreters) {
-                return _this4.setState({ interpreters: interpreters });
-            });
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var interpreters = this.state.interpreters;
-
-            return _react2.default.createElement(
-                "div",
-                null,
-                interpreters ? _react2.default.createElement(InterpretersList, { list: interpreters }) : _react2.default.createElement(
-                    "p",
-                    null,
-                    "Cargando..."
-                )
-            );
-        }
-    }]);
-
-    return Interpretes;
-}(_react.Component);
 
 var InterpretersList = function InterpretersList(_ref2) {
     var list = _ref2.list;
@@ -21927,51 +21959,6 @@ var InterpretersList = function InterpretersList(_ref2) {
     );
 };
 
-var Generos = function (_Component3) {
-    _inherits(Generos, _Component3);
-
-    function Generos(props) {
-        _classCallCheck(this, Generos);
-
-        var _this5 = _possibleConstructorReturn(this, (Generos.__proto__ || Object.getPrototypeOf(Generos)).call(this, props));
-
-        _this5.state = {
-            genres: null
-        };
-        return _this5;
-    }
-
-    _createClass(Generos, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            var _this6 = this;
-
-            fetch(baseUrl + "Generos/GetGeneros").then(function (response) {
-                return response.json();
-            }).then(function (genres) {
-                return _this6.setState({ genres: genres });
-            });
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var genres = this.state.genres;
-
-            return _react2.default.createElement(
-                "div",
-                null,
-                genres ? _react2.default.createElement(GenresList, { list: genres }) : _react2.default.createElement(
-                    "p",
-                    null,
-                    "Cargando..."
-                )
-            );
-        }
-    }]);
-
-    return Generos;
-}(_react.Component);
-
 var GenresList = function GenresList(_ref3) {
     var list = _ref3.list;
 
@@ -21988,9 +21975,7 @@ var GenresList = function GenresList(_ref3) {
     );
 };
 
-_reactDom2.default.render(_react2.default.createElement(Discos, null), document.getElementById("listaDiscos"));
-_reactDom2.default.render(_react2.default.createElement(Interpretes, null), document.getElementById("listaInterpretes"));
-_reactDom2.default.render(_react2.default.createElement(Generos, null), document.getElementById("listaGeneros"));
+_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById("listado"));
 
 /***/ })
 /******/ ]);
