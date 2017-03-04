@@ -151,6 +151,9 @@
     <Compile Include="Disco.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="discosConPuntuacion_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="discosGenero_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

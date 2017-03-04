@@ -91,6 +91,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="discosConPuntuacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="IdDisco" Type="int" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="255" />
+          <Property Name="Agno" Type="float" />
+          <Property Name="IdInterprete" Type="int" />
+          <Property Name="Puntuacion" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
   <Function Name="discosGenero" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IdGenero" Type="int" Mode="In" />
     <ReturnType>

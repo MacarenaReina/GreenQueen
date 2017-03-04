@@ -130,6 +130,7 @@
     <FunctionImport Name="interpretesGenero" IsComposable="true" ReturnType="Collection(DiscosModel.interpretesGenero_Result)">
       <Parameter Name="IdGenero" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="discosConPuntuacion" IsComposable="true" ReturnType="Collection(DiscosModel.discosConPuntuacion_Result)" />
   </EntityContainer>
   <ComplexType Name="discosGenero_Result">
     <Property Type="Int32" Name="IdDisco" Nullable="false" />
@@ -158,5 +159,12 @@
   <ComplexType Name="interpretesGenero_Result">
     <Property Type="String" Name="Interprete" Nullable="true" MaxLength="255" />
     <Property Type="Int32" Name="IdInterprete" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="discosConPuntuacion_Result">
+    <Property Type="Int32" Name="IdDisco" Nullable="false" />
+    <Property Type="String" Name="Titulo" Nullable="true" MaxLength="255" />
+    <Property Type="Double" Name="Agno" Nullable="true" />
+    <Property Type="Int32" Name="IdInterprete" Nullable="true" />
+    <Property Type="Int32" Name="Puntuacion" Nullable="true" />
   </ComplexType>
 </Schema>

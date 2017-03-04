@@ -7,8 +7,8 @@ class Discos extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            discs: null,
-            votes: null
+            discs: null/*,
+            votes: null*/
         };
     }
 
@@ -18,17 +18,17 @@ class Discos extends Component {
             .then(discs => this.setState({ discs }));
 
         //Falta pillar puntuaciones
-        fetch(`${baseUrl}Discos/GetDiscos`)
-            .then(response => response.json())
-            .then(discs => this.setState({ discs }));
+        //fetch(`${baseUrl}Discos/GetDiscos`)
+        //    .then(response => response.json())
+        //    .then(discs => this.setState({ discs }));
     }
 
     render() {
         const {discs} = this.state;
         return (
             <div>
-                {discs && votes
-                    ? <DiscList list={discs} votes={votes} />
+                {discs //&& votes
+                    ? <DiscList list={discs} /* votes={votes} */ />
                     : <p>Cargando...</p>
                 }
             </div>
@@ -36,24 +36,25 @@ class Discos extends Component {
     }
 }
 
-const DiscList = ({list, votes}) => {
-    let actualVotes;
+const DiscList = ({list/*, votes*/}) => {
+    //let actualVotes;
     return (
         <div>
-            {list.map(item => {
-                actualVotes = [];
-                votes.map(vote => {
-                    if (vote.IdDisco == item.IdDisco) {
-                        actualVotes.push(vote.IdDisco);
-                    }
-                });
-                const average = actualVotes.reduce(({ a, b }) => {
-                    return a + b;
-                }) / actualVotes.length;
+            {list.map(item => //{
+                //actualVotes = [];
+                //votes.map(vote => {
+                //    if (vote.IdDisco == item.IdDisco) {
+                //        actualVotes.push(vote.IdDisco);
+                //    }
+                //});
+                //const average = actualVotes.reduce(({ a, b }) => {
+                //    return a + b;
+                //}) / actualVotes.length;
                 <li className="list-group-item" key={item.IdDisco}>{item.Titulo}
-                    <p className="justify-content-between"><span className="badge badge-default badge-pill">{item.Agno}</span><span>Puntuación: {actualVotes}</span></p>
+                    <p className="justify-content-between"><span className="badge badge-default badge-pill">{item.Agno}</span></p> //<span>Puntuación: {actualVotes}</span>
                 </li>
-            })}
+            //}
+            )}
         </div>
     );
 }
