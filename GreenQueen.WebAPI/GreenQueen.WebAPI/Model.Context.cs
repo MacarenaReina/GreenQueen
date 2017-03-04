@@ -101,5 +101,11 @@ namespace GreenQueen.WebAPI
         {
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<discosConPuntuacion_Result>("[DiscosEntities].[discosConPuntuacion]()");
         }
+    
+        [DbFunction("DiscosEntities", "mejoresDiscos")]
+        public virtual IQueryable<mejoresDiscos_Result> mejoresDiscos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<mejoresDiscos_Result>("[DiscosEntities].[mejoresDiscos]()");
+        }
     }
 }
