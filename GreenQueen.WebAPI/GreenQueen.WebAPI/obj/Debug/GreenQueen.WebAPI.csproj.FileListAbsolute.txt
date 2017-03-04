@@ -252,5 +252,4 @@ C:\Users\alumno\Documents\PROYECTO\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAP
 C:\Users\alumno\Documents\PROYECTO\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\obj\Debug\GreenQueen.WebAPI.csprojResolveAssemblyReference.cache
 C:\Users\alumno\Documents\PROYECTO\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\obj\Debug\GreenQueen.WebAPI.dll
 C:\Users\alumno\Documents\PROYECTO\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\obj\Debug\GreenQueen.WebAPI.pdb
-C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\bin\GreenQueen.WebAPI.dll.CodeAnalysisLog.xml
-C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\bin\GreenQueen.WebAPI.dll.lastcodeanalysissucceeded
+C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.WebAPI\obj\Debug\GreenQueen.WebAPI.csprojResolveAssemblyReference.cache

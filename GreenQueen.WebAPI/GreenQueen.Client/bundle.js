@@ -21813,6 +21813,7 @@ var App = function (_Component) {
             interpreters: null,
             genres: null
         };
+        _this.selectDisc = _this.selectDisc.bind(_this);
         return _this;
     }
 
@@ -21860,7 +21861,7 @@ var App = function (_Component) {
                     _react2.default.createElement(
                         "ul",
                         { id: "listaDiscos", className: "list-group" },
-                        discs ? _react2.default.createElement(DiscList, { list: discs }) : _react2.default.createElement(
+                        discs ? _react2.default.createElement(DiscList, { list: discs, selectDisc: this.selectDisc }) : _react2.default.createElement(
                             "p",
                             null,
                             "Cargando..."
@@ -21907,13 +21908,37 @@ var App = function (_Component) {
                 )
             );
         }
+    }, {
+        key: "selectDisc",
+        value: function selectDisc(idInter) {
+            var sameId = function sameId(item) {
+                return item.IdInterprete == idInter;
+            };
+            var notSameId = function notSameId(item) {
+                return item.IdInterprete !== idInter;
+            };
+
+            var areTheId = this.state.interpreters.filter(sameId);
+            areTheId.map(function (item) {
+                item.selected = true;
+            });
+            var arentTheId = this.state.interpreters.filter(notSameId);
+            arentTheId.map(function (item) {
+                item.selected = false;
+            });
+            var interpreters = areTheId.concat(arentTheId);
+            this.setState({
+                interpreters: interpreters
+            });
+        }
     }]);
 
     return App;
 }(_react.Component);
 
 var DiscList = function DiscList(_ref) {
-    var list = _ref.list;
+    var list = _ref.list,
+        selectDisc = _ref.selectDisc;
 
     return _react2.default.createElement(
         "div",
@@ -21925,7 +21950,9 @@ var DiscList = function DiscList(_ref) {
                 item.Titulo,
                 _react2.default.createElement(
                     "div",
-                    { className: "justify-content-between" },
+                    { className: "justify-content-between", onClick: function onClick() {
+                            return selectDisc(item.IdInterprete);
+                        } },
                     _react2.default.createElement(
                         "span",
                         { className: "badge badge-default badge-pill" },
@@ -21952,7 +21979,7 @@ var InterpretersList = function InterpretersList(_ref2) {
         list.map(function (item) {
             return _react2.default.createElement(
                 "li",
-                { className: "list-group-item", key: item.IdInterprete },
+                { className: item.selected == true ? "list-group-item selec" : "list-group-item", key: item.IdInterprete },
                 item.Interprete1
             );
         })

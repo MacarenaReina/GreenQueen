@@ -11,6 +11,7 @@ class App extends Component {
             interpreters: null,
             genres: null
         };
+        this.selectDisc = this.selectDisc.bind(this);
     }
 
     componentDidMount() {
@@ -33,7 +34,7 @@ class App extends Component {
                     <h2><span className="glyphicon glyphicon-cd"></span>Discos</h2>
                     <ul id="listaDiscos" className="list-group">
                         {discs
-                            ? <DiscList list={discs} />
+                            ? <DiscList list={discs} selectDisc={this.selectDisc} />
                             : <p>Cargando...</p>
                         }
                     </ul>
@@ -59,14 +60,32 @@ class App extends Component {
             </div>
         );
     }
+
+    selectDisc(idInter) {
+        const sameId = item => item.IdInterprete == idInter;
+        const notSameId = item => item.IdInterprete !== idInter;
+
+        const areTheId = this.state.interpreters.filter(sameId);
+        areTheId.map(item => {
+            item.selected = true;
+        })
+        const arentTheId = this.state.interpreters.filter(notSameId);
+        arentTheId.map(item => {
+            item.selected = false;
+        })
+        const interpreters = areTheId.concat(arentTheId);
+        this.setState({
+            interpreters
+        });
+    }
 }
 
-const DiscList = ({list}) => {
+const DiscList = ({list, selectDisc}) => {
     return (
         <div>
             {list.map(item =>
                 <li className="list-group-item" key={item.IdDisco}>{item.Titulo}
-                    <div className="justify-content-between"><span className="badge badge-default badge-pill">{
+                    <div className="justify-content-between" onClick={()=>selectDisc(item.IdInterprete)}><span className="badge badge-default badge-pill">{
                         item.Agno
                             ? item.Agno
                             : "Desconocido"
@@ -85,7 +104,10 @@ const InterpretersList = ({list}) => {
     return (
         <div>
             {list.map(item =>
-                <li className="list-group-item" key={item.IdInterprete}>{item.Interprete1}</li>
+                <li className={item.selected == true
+                    ? "list-group-item selec"
+                    : "list-group-item"
+                } key={item.IdInterprete}>{item.Interprete1}</li>
             )}
         </div>
     );
