@@ -20,6 +20,13 @@ namespace GreenQueen.WebAPI.Controllers
             return db.discosConPuntuacion();
         }
 
+        // GET: api/Discos/MejoresDiscos
+        [ActionName("MejoresDiscos")]
+        public IQueryable<mejoresDiscos_Result> MejoresDiscos()
+        {
+            return db.mejoresDiscos();
+        }
+
         // GET: api/Discos/GetDiscosInterprete/7
         [ActionName("GetDiscosInterprete")]
         public IQueryable<discosInterprete_Result> GetDiscosInterprete(int id)
