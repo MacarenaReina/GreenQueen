@@ -62,9 +62,11 @@ class App extends Component {
     }
 
     selectDisc(idInter) {
+        //Funciones para el filter del Interprete
         const sameId = item => item.IdInterprete == idInter;
         const notSameId = item => item.IdInterprete !== idInter;
 
+        //Para ordenar el interprete
         const areTheId = this.state.interpreters.filter(sameId);
         areTheId.map(item => {
             item.selected = true;
@@ -77,6 +79,31 @@ class App extends Component {
         this.setState({
             interpreters
         });
+
+        //Para coger los géneros
+        fetch(`${baseUrl}Generos/GetGenerosDisco/${idInter}`)
+            .then(response => response.json())
+            .then(genres => this.setSelectedGenres(genres));
+    }
+
+    setSelectedGenres(receivedGenres) {
+        //Para ordenar el Género
+        let updatedList = this.state.genres;
+        receivedGenres.map(genre => {
+            genre.selected = true;
+            let index;
+            updatedList.map(uList => {
+                uList.selected = false;
+                if (uList.IdTipo == genre.IdTipo) {
+                    index = updatedList.indexOf(uList);
+                }
+            })
+            updatedList.splice(index, 1);
+        })
+        const genres = receivedGenres.concat(updatedList);
+        this.setState({
+            genres
+        })
     }
 }
 
@@ -84,8 +111,8 @@ const DiscList = ({list, selectDisc}) => {
     return (
         <div>
             {list.map(item =>
-                <li className="list-group-item" key={item.IdDisco}>{item.Titulo}
-                    <div className="justify-content-between" onClick={()=>selectDisc(item.IdInterprete)}><span className="badge badge-default badge-pill">{
+                <li className="list-group-item" key={item.IdDisco}><span onClick={() => selectDisc(item.IdInterprete)}>{item.Titulo}</span>
+                    <div className="justify-content-between"><span className="badge badge-default badge-pill">{
                         item.Agno
                             ? item.Agno
                             : "Desconocido"
@@ -117,7 +144,10 @@ const GenresList = ({list}) => {
     return (
         <div>
             {list.map(item =>
-                <li className="list-group-item" key={item.IdTipo}>{item.tipo1}</li>
+                <li className={item.selected == true
+                    ? "list-group-item selec"
+                    : "list-group-item"
+                } key={item.IdTipo}>{item.tipo1}{item.tipo}</li>
             )}
         </div>
     );

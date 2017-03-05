@@ -21911,6 +21911,9 @@ var App = function (_Component) {
     }, {
         key: "selectDisc",
         value: function selectDisc(idInter) {
+            var _this3 = this;
+
+            //Funciones para el filter del Interprete
             var sameId = function sameId(item) {
                 return item.IdInterprete == idInter;
             };
@@ -21918,6 +21921,7 @@ var App = function (_Component) {
                 return item.IdInterprete !== idInter;
             };
 
+            //Para ordenar el interprete
             var areTheId = this.state.interpreters.filter(sameId);
             areTheId.map(function (item) {
                 item.selected = true;
@@ -21929,6 +21933,34 @@ var App = function (_Component) {
             var interpreters = areTheId.concat(arentTheId);
             this.setState({
                 interpreters: interpreters
+            });
+
+            //Para coger los géneros
+            fetch(baseUrl + "Generos/GetGenerosDisco/" + idInter).then(function (response) {
+                return response.json();
+            }).then(function (genres) {
+                return _this3.setSelectedGenres(genres);
+            });
+        }
+    }, {
+        key: "setSelectedGenres",
+        value: function setSelectedGenres(receivedGenres) {
+            //Para ordenar el Género
+            var updatedList = this.state.genres;
+            receivedGenres.map(function (genre) {
+                genre.selected = true;
+                var index = void 0;
+                updatedList.map(function (uList) {
+                    uList.selected = false;
+                    if (uList.IdTipo == genre.IdTipo) {
+                        index = updatedList.indexOf(uList);
+                    }
+                });
+                updatedList.splice(index, 1);
+            });
+            var genres = receivedGenres.concat(updatedList);
+            this.setState({
+                genres: genres
             });
         }
     }]);
@@ -21947,12 +21979,16 @@ var DiscList = function DiscList(_ref) {
             return _react2.default.createElement(
                 "li",
                 { className: "list-group-item", key: item.IdDisco },
-                item.Titulo,
                 _react2.default.createElement(
-                    "div",
-                    { className: "justify-content-between", onClick: function onClick() {
+                    "span",
+                    { onClick: function onClick() {
                             return selectDisc(item.IdInterprete);
                         } },
+                    item.Titulo
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "justify-content-between" },
                     _react2.default.createElement(
                         "span",
                         { className: "badge badge-default badge-pill" },
@@ -21995,8 +22031,9 @@ var GenresList = function GenresList(_ref3) {
         list.map(function (item) {
             return _react2.default.createElement(
                 "li",
-                { className: "list-group-item", key: item.IdTipo },
-                item.tipo1
+                { className: item.selected == true ? "list-group-item selec" : "list-group-item", key: item.IdTipo },
+                item.tipo1,
+                item.tipo
             );
         })
     );
