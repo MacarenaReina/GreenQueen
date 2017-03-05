@@ -12,6 +12,11 @@ span { margin-right: 0.5em; margin-left:0.5em; }
 #prueba3 { clear: left; }
 a:hover { text-decoration: none; }
 
+ul {
+    overflow: auto;
+    max-height: 40em;
+}
+
 .parallax {
     background-image: url("live-concert.jpg");
     min-height: 400px; 
@@ -137,5 +142,6 @@ text {
 }
 
 .selec {
-    background-color: green;
+    background-color: #66cc99;
+    font-weight: bold;
 }
