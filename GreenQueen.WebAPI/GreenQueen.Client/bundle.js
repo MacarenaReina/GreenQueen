@@ -21909,6 +21909,9 @@ var App = function (_Component) {
                 )
             );
         }
+
+        //Para buscar qué intérpretes y géneros tiene un disco al hacerle click
+
     }, {
         key: "selectDisc",
         value: function selectDisc(idInter, idDisc) {
@@ -21952,6 +21955,9 @@ var App = function (_Component) {
                 return _this3.setSelectedGenres(genres);
             });
         }
+
+        //Para buscar qué discos y géneros tiene un intérprete al hacerle click
+
     }, {
         key: "selectInterpreter",
         value: function selectInterpreter(idInter) {
@@ -21997,6 +22003,9 @@ var App = function (_Component) {
                 return _this4.setSelectedGenres(genres);
             });
         }
+
+        //Función que usan las demás funciones de búsqueda para buscar el género
+
     }, {
         key: "setSelectedGenres",
         value: function setSelectedGenres(receivedGenres) {

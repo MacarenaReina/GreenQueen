@@ -62,6 +62,7 @@ class App extends Component {
         );
     }
 
+    //Para buscar qué intérpretes y géneros tiene un disco al hacerle click
     selectDisc(idInter, idDisc) {
         //Para seleccionar nuestro actual Disco
         const discs = this.state.discs;
@@ -98,6 +99,7 @@ class App extends Component {
             .then(genres => this.setSelectedGenres(genres));
     }
 
+    //Para buscar qué discos y géneros tiene un intérprete al hacerle click
     selectInterpreter(idInter) {
         //Para seleccionar nuestro actual Interprete
         const interpreters = this.state.interpreters;
@@ -139,6 +141,7 @@ class App extends Component {
             .then(genres => this.setSelectedGenres(genres));
     }
 
+    //Función que usan las demás funciones de búsqueda para buscar el género
     setSelectedGenres(receivedGenres) {
         //Para ordenar el Género
         let updatedList = this.state.genres;
