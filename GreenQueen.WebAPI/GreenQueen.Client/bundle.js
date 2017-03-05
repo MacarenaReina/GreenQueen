@@ -21814,6 +21814,7 @@ var App = function (_Component) {
             genres: null
         };
         _this.selectDisc = _this.selectDisc.bind(_this);
+        _this.selectInterpreter = _this.selectInterpreter.bind(_this);
         return _this;
     }
 
@@ -21880,7 +21881,7 @@ var App = function (_Component) {
                     _react2.default.createElement(
                         "ul",
                         { id: "listaInterpretes", className: "list-group" },
-                        interpreters ? _react2.default.createElement(InterpretersList, { list: interpreters }) : _react2.default.createElement(
+                        interpreters ? _react2.default.createElement(InterpretersList, { list: interpreters, selectInterpreter: this.selectInterpreter }) : _react2.default.createElement(
                             "p",
                             null,
                             "Cargando..."
@@ -21952,12 +21953,56 @@ var App = function (_Component) {
             });
         }
     }, {
+        key: "selectInterpreter",
+        value: function selectInterpreter(idInter) {
+            var _this4 = this;
+
+            //Para seleccionar nuestro actual Interprete
+            var interpreters = this.state.interpreters;
+            interpreters.map(function (interpreter) {
+                interpreter.IdInterprete == idInter ? interpreter.selected = true : interpreter.selected = false;
+            });
+            this.setState({
+                interpreters: interpreters
+            });
+
+            //Funciones para el filter del Disc
+            var sameId = function sameId(item) {
+                return item.IdInterprete == idInter;
+            };
+
+            //Para ordenar los discos
+            var updatedList = this.state.discs;
+            var areTheId = this.state.discs.filter(sameId);
+            areTheId.map(function (disc) {
+                var index = void 0;
+                updatedList.map(function (uList) {
+                    uList.selected = false;
+                    if (uList.IdDisco == disc.IdDisco) {
+                        index = updatedList.indexOf(uList);
+                    }
+                });
+                updatedList.splice(index, 1);
+                disc.selected = true;
+            });
+            var discs = areTheId.concat(updatedList);
+            this.setState({
+                discs: discs
+            });
+
+            //Para coger los géneros
+            fetch(baseUrl + "Generos/GetGenerosInterprete/" + idInter).then(function (response) {
+                return response.json();
+            }).then(function (genres) {
+                return _this4.setSelectedGenres(genres);
+            });
+        }
+    }, {
         key: "setSelectedGenres",
         value: function setSelectedGenres(receivedGenres) {
             //Para ordenar el Género
             var updatedList = this.state.genres;
             receivedGenres.map(function (genre) {
-                genre.selected = true;
                 var index = void 0;
                 updatedList.map(function (uList) {
                     uList.selected = false;
@@ -21966,6 +22011,7 @@ var App = function (_Component) {
                     }
                 });
                 updatedList.splice(index, 1);
+                genre.selected = true;
             });
             var genres = receivedGenres.concat(updatedList);
             this.setState({
@@ -22016,7 +22062,8 @@ var DiscList = function DiscList(_ref) {
 };
 
 var InterpretersList = function InterpretersList(_ref2) {
-    var list = _ref2.list;
+    var list = _ref2.list,
+        selectInterpreter = _ref2.selectInterpreter;
 
     return _react2.default.createElement(
         "div",
@@ -22024,7 +22071,9 @@ var InterpretersList = function InterpretersList(_ref2) {
         list.map(function (item) {
             return _react2.default.createElement(
                 "li",
-                { className: item.selected == true ? "list-group-item selec" : "list-group-item", key: item.IdInterprete },
+                { className: item.selected == true ? "list-group-item selec" : "list-group-item", key: item.IdInterprete, onClick: function onClick() {
+                        return selectInterpreter(item.IdInterprete);
+                    } },
                 item.Interprete1
             );
         })

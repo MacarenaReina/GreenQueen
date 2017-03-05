@@ -12,6 +12,7 @@ class App extends Component {
             genres: null
         };
         this.selectDisc = this.selectDisc.bind(this);
+        this.selectInterpreter = this.selectInterpreter.bind(this);
     }
 
     componentDidMount() {
@@ -43,7 +44,7 @@ class App extends Component {
                     <h2><span className="glyphicon glyphicon-user"></span>Intérpretes</h2>
                     <ul id="listaInterpretes" className="list-group">
                         {interpreters
-                            ? <InterpretersList list={interpreters} />
+                            ? <InterpretersList list={interpreters} selectInterpreter={this.selectInterpreter} />
                             : <p>Cargando...</p>
                         }
                     </ul>
@@ -97,11 +98,51 @@ class App extends Component {
             .then(genres => this.setSelectedGenres(genres));
     }
 
+    selectInterpreter(idInter) {
+        //Para seleccionar nuestro actual Interprete
+        const interpreters = this.state.interpreters;
+        interpreters.map(interpreter => {
+            interpreter.IdInterprete == idInter
+                ? interpreter.selected = true
+                : interpreter.selected = false
+        })
+        this.setState({
+            interpreters
+        })
+
+        //Funciones para el filter del Disc
+        const sameId = item => item.IdInterprete == idInter;
+
+        //Para ordenar los discos
+        let updatedList = this.state.discs;
+        let areTheId = this.state.discs.filter(sameId);
+        areTheId.map(disc => {
+            let index;
+            updatedList.map(uList => {
+                uList.selected = false;
+                if (uList.IdDisco == disc.IdDisco) {
+                    index = updatedList.indexOf(uList);
+                }
+            })
+            updatedList.splice(index, 1);
+            disc.selected = true;
+        })
+        const discs = areTheId.concat(updatedList);
+        this.setState({
+            discs
+        })
+
+
+        //Para coger los géneros
+        fetch(`${baseUrl}Generos/GetGenerosInterprete/${idInter}`)
+            .then(response => response.json())
+            .then(genres => this.setSelectedGenres(genres));
+    }
+
     setSelectedGenres(receivedGenres) {
         //Para ordenar el Género
         let updatedList = this.state.genres;
         receivedGenres.map(genre => {
-            genre.selected = true;
             let index;
             updatedList.map(uList => {
                 uList.selected = false;
@@ -110,6 +151,7 @@ class App extends Component {
                 }
             })
             updatedList.splice(index, 1);
+            genre.selected = true;
         })
         const genres = receivedGenres.concat(updatedList);
         this.setState({
@@ -141,14 +183,14 @@ const DiscList = ({list, selectDisc}) => {
     );
 }
 
-const InterpretersList = ({list}) => {
+const InterpretersList = ({list, selectInterpreter}) => {
     return (
         <div>
             {list.map(item =>
                 <li className={item.selected == true
                     ? "list-group-item selec"
                     : "list-group-item"
-                } key={item.IdInterprete}>{item.Interprete1}</li>
+                } key={item.IdInterprete} onClick={() => selectInterpreter(item.IdInterprete)}>{item.Interprete1}</li>
             )}
         </div>
     );
