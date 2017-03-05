@@ -21,6 +21,7 @@ namespace GreenQueen.WebAPI.Controllers
         }
 
         // GET: api/Discos/MejoresDiscos
+        [HttpGet]
         [ActionName("MejoresDiscos")]
         public IQueryable<mejoresDiscos_Result> MejoresDiscos()
         {

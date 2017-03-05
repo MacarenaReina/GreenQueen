@@ -22106,6 +22106,41 @@ var GenresList = function GenresList(_ref3) {
     );
 };
 
+var MostVoted = function (_Component2) {
+    _inherits(MostVoted, _Component2);
+
+    function MostVoted(props) {
+        _classCallCheck(this, MostVoted);
+
+        var _this5 = _possibleConstructorReturn(this, (MostVoted.__proto__ || Object.getPrototypeOf(MostVoted)).call(this, props));
+
+        _this5.state = {
+            mostVoted: null
+        };
+        return _this5;
+    }
+
+    _createClass(MostVoted, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            this.getMostVoted();
+        }
+    }, {
+        key: "getMostVoted",
+        value: function getMostVoted() {
+            var _this6 = this;
+
+            fetch(baseUrl + "Discos/MejoresDiscos").then(function (response) {
+                return response.json();
+            }).then(function (mostVoted) {
+                return _this6.setState({ mostVoted: mostVoted });
+            });
+        }
+    }]);
+
+    return MostVoted;
+}(_react.Component);
+
 _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById("listado"));
 
 /***/ })

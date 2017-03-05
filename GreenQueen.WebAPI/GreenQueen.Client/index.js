@@ -212,4 +212,45 @@ const GenresList = ({list}) => {
     );
 }
 
+class MostVoted extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            mostVoted: null
+        }
+    }
+
+    componentDidMount() {
+        this.getMostVoted();
+    }
+
+    render() {
+        const {mostVoted} = this.state;
+        return (
+            <div>
+                {
+                    mostVoted
+                        ? <Votes list={mostVoted} />
+                        : <p>Cargando</p>
+                }
+            </div>
+            )
+    }
+
+    getMostVoted() {
+        fetch(`${baseUrl}Discos/MejoresDiscos`)
+            .then(response => response.json())
+            .then(mostVoted => this.setState({ mostVoted }));
+    }
+}
+
+const Votes = ({mostVoted}) => {
+    return (
+        <div>
+
+        </div>
+        )
+}
+
 ReactDOM.render(<App />, document.getElementById("listado"));
+ReactDOM.render(<MostVoted />, document.getElementById("mostrarVotos"));
