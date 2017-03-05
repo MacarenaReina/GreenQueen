@@ -21910,8 +21910,17 @@ var App = function (_Component) {
         }
     }, {
         key: "selectDisc",
-        value: function selectDisc(idInter) {
+        value: function selectDisc(idInter, idDisc) {
             var _this3 = this;
+
+            //Para seleccionar nuestro actual Disco
+            var discs = this.state.discs;
+            discs.map(function (disc) {
+                disc.IdDisco == idDisc ? disc.selected = true : disc.selected = false;
+            });
+            this.setState({
+                discs: discs
+            });
 
             //Funciones para el filter del Interprete
             var sameId = function sameId(item) {
@@ -21936,7 +21945,7 @@ var App = function (_Component) {
             });
 
             //Para coger los géneros
-            fetch(baseUrl + "Generos/GetGenerosDisco/" + idInter).then(function (response) {
+            fetch(baseUrl + "Generos/GetGenerosDisco/" + idDisc).then(function (response) {
                 return response.json();
             }).then(function (genres) {
                 return _this3.setSelectedGenres(genres);
@@ -21978,11 +21987,11 @@ var DiscList = function DiscList(_ref) {
         list.map(function (item) {
             return _react2.default.createElement(
                 "li",
-                { className: "list-group-item", key: item.IdDisco },
+                { className: item.selected == true ? "list-group-item selec" : "list-group-item", key: item.IdDisco },
                 _react2.default.createElement(
                     "span",
                     { onClick: function onClick() {
-                            return selectDisc(item.IdInterprete);
+                            return selectDisc(item.IdInterprete, item.IdDisco);
                         } },
                     item.Titulo
                 ),

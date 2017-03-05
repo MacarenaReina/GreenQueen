@@ -61,7 +61,18 @@ class App extends Component {
         );
     }
 
-    selectDisc(idInter) {
+    selectDisc(idInter, idDisc) {
+        //Para seleccionar nuestro actual Disco
+        const discs = this.state.discs;
+        discs.map(disc => {
+            disc.IdDisco == idDisc
+                ? disc.selected = true
+                : disc.selected = false
+        })
+        this.setState({
+            discs
+        })
+
         //Funciones para el filter del Interprete
         const sameId = item => item.IdInterprete == idInter;
         const notSameId = item => item.IdInterprete !== idInter;
@@ -81,7 +92,7 @@ class App extends Component {
         });
 
         //Para coger los géneros
-        fetch(`${baseUrl}Generos/GetGenerosDisco/${idInter}`)
+        fetch(`${baseUrl}Generos/GetGenerosDisco/${idDisc}`)
             .then(response => response.json())
             .then(genres => this.setSelectedGenres(genres));
     }
@@ -111,7 +122,10 @@ const DiscList = ({list, selectDisc}) => {
     return (
         <div>
             {list.map(item =>
-                <li className="list-group-item" key={item.IdDisco}><span onClick={() => selectDisc(item.IdInterprete)}>{item.Titulo}</span>
+                <li className={item.selected == true
+                    ? "list-group-item selec"
+                    : "list-group-item"
+                } key={item.IdDisco}><span onClick={() => selectDisc(item.IdInterprete, item.IdDisco)}>{item.Titulo}</span>
                     <div className="justify-content-between"><span className="badge badge-default badge-pill">{
                         item.Agno
                             ? item.Agno
