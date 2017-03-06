@@ -29,7 +29,6 @@ C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQu
 C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.Client\bin\GreenQueen.Client.pdb
 C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.Client\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.Client\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.Client\obj\Debug\GreenQueen.Client.csprojResolveAssemblyReference.cache
 C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.Client\obj\Debug\GreenQueen.Client.dll
 C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.Client\obj\Debug\GreenQueen.Client.pdb
 C:\Users\alumno\Documents\PROYECTO-GIT\GreenQueen\GreenQueen.WebAPI\GreenQueen.Client\bin\roslyn\csc.exe
@@ -168,3 +167,4 @@ C:\Users\alumno\Desktop\PROYECTO\GreenQueen\GreenQueen.WebAPI\GreenQueen.Client\
 C:\Users\alumno\Desktop\PROYECTO\GreenQueen\GreenQueen.WebAPI\GreenQueen.Client\obj\Debug\GreenQueen.Client.csprojResolveAssemblyReference.cache
 C:\Users\alumno\Desktop\PROYECTO\GreenQueen\GreenQueen.WebAPI\GreenQueen.Client\obj\Debug\GreenQueen.Client.dll
 C:\Users\alumno\Desktop\PROYECTO\GreenQueen\GreenQueen.WebAPI\GreenQueen.Client\obj\Debug\GreenQueen.Client.pdb
+C:\Users\agoya\OneDrive\Documents\Proyectos\GreenQueen\GreenQueen.WebAPI\GreenQueen.Client\obj\Debug\GreenQueen.Client.csprojResolveAssemblyReference.cache

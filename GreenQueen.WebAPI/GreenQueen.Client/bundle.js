@@ -21855,7 +21855,7 @@ var App = function (_Component) {
                     { className: "col-sm-4" },
                     _react2.default.createElement(
                         "h2",
-                        null,
+                        { className: "title" },
                         _react2.default.createElement("span", { className: "glyphicon glyphicon-cd" }),
                         "Discos"
                     ),
@@ -21874,7 +21874,7 @@ var App = function (_Component) {
                     { className: "col-sm-4" },
                     _react2.default.createElement(
                         "h2",
-                        null,
+                        { className: "title" },
                         _react2.default.createElement("span", { className: "glyphicon glyphicon-user" }),
                         "Int\xE9rpretes"
                     ),
@@ -21893,7 +21893,7 @@ var App = function (_Component) {
                     { className: "col-sm-4" },
                     _react2.default.createElement(
                         "h2",
-                        null,
+                        { className: "title" },
                         _react2.default.createElement("span", { className: "glyphicon glyphicon-music" }),
                         "G\xE9neros"
                     ),
@@ -22056,13 +22056,61 @@ var DiscList = function DiscList(_ref) {
                     _react2.default.createElement(
                         "span",
                         { className: "badge badge-default badge-pill" },
-                        item.Agno ? item.Agno : "Desconocido"
-                    ),
-                    _react2.default.createElement(
-                        "span",
-                        null,
-                        "Puntuaci\xF3n: ",
-                        item.Puntuacion ? item.Puntuacion : "No hay"
+                        item.Agno ? item.Agno : "Desconocido",
+                        _react2.default.createElement(
+                            "span",
+                            null,
+                            _react2.default.createElement(
+                                "label",
+                                { className: item.Puntuacion >= 1 ? "starSelected" : "starNoSelected" },
+                                "\u2605"
+                            ),
+                            _react2.default.createElement(
+                                "label",
+                                { className: item.Puntuacion >= 2 ? "starSelected" : "starNoSelected" },
+                                "\u2605"
+                            ),
+                            _react2.default.createElement(
+                                "label",
+                                { className: item.Puntuacion >= 3 ? "starSelected" : "starNoSelected" },
+                                "\u2605"
+                            ),
+                            _react2.default.createElement(
+                                "label",
+                                { className: item.Puntuacion >= 4 ? "starSelected" : "starNoSelected" },
+                                "\u2605"
+                            ),
+                            _react2.default.createElement(
+                                "label",
+                                { className: item.Puntuacion >= 5 ? "starSelected" : "starNoSelected" },
+                                "\u2605"
+                            ),
+                            _react2.default.createElement(
+                                "label",
+                                { className: item.Puntuacion >= 6 ? "starSelected" : "starNoSelected" },
+                                "\u2605"
+                            ),
+                            _react2.default.createElement(
+                                "label",
+                                { className: item.Puntuacion >= 7 ? "starSelected" : "starNoSelected" },
+                                "\u2605"
+                            ),
+                            _react2.default.createElement(
+                                "label",
+                                { className: item.Puntuacion >= 8 ? "starSelected" : "starNoSelected" },
+                                "\u2605"
+                            ),
+                            _react2.default.createElement(
+                                "label",
+                                { className: item.Puntuacion >= 9 ? "starSelected" : "starNoSelected" },
+                                "\u2605"
+                            ),
+                            _react2.default.createElement(
+                                "label",
+                                { className: item.Puntuacion >= 10 ? "starSelected" : "starNoSelected" },
+                                "\u2605"
+                            )
+                        )
                     )
                 )
             );
@@ -22126,6 +22174,21 @@ var MostVoted = function (_Component2) {
             this.getMostVoted();
         }
     }, {
+        key: "render",
+        value: function render() {
+            var mostVoted = this.state.mostVoted;
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                mostVoted ? _react2.default.createElement(Votes, { list: mostVoted }) : _react2.default.createElement(
+                    "p",
+                    null,
+                    "Cargando"
+                )
+            );
+        }
+    }, {
         key: "getMostVoted",
         value: function getMostVoted() {
             var _this6 = this;
@@ -22141,7 +22204,14 @@ var MostVoted = function (_Component2) {
     return MostVoted;
 }(_react.Component);
 
+var Votes = function Votes(_ref4) {
+    var mostVoted = _ref4.mostVoted;
+
+    return _react2.default.createElement("div", null);
+};
+
 _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById("listado"));
+_reactDom2.default.render(_react2.default.createElement(MostVoted, null), document.getElementById("mostrarVotos"));
 
 /***/ })
 /******/ ]);

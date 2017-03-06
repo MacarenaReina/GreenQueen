@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenQueen.WebAPI", "GreenQueen.WebAPI\GreenQueen.WebAPI.csproj", "{30E20419-F370-404F-BCFC-96DACE461666}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenQueen.Client", "GreenQueen.Client\GreenQueen.Client.csproj", "{07F268F5-4E0F-4992-ABBC-4C5E658AA591}"
+	ProjectSection(ProjectDependencies) = postProject
+		{30E20419-F370-404F-BCFC-96DACE461666} = {30E20419-F370-404F-BCFC-96DACE461666}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

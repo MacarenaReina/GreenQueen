@@ -175,12 +175,7 @@ const DiscList = ({list, selectDisc}) => {
                         item.Agno
                             ? item.Agno
                             : "Desconocido"
-                    }</span>
-                    //<span>Puntuación: {
-                    //        item.Puntuacion
-                    //            ? item.Puntuacion
-                    //            : "No hay"
-                    //        }</span>
+                    }
                         <span>
                             <label className={item.Puntuacion >= 1 ? "starSelected" : "starNoSelected"}>&#9733;</label>
                             <label className={item.Puntuacion >= 2 ? "starSelected" : "starNoSelected"}>&#9733;</label>
@@ -192,8 +187,8 @@ const DiscList = ({list, selectDisc}) => {
                             <label className={item.Puntuacion >= 8 ? "starSelected" : "starNoSelected"}>&#9733;</label>
                             <label className={item.Puntuacion >= 9 ? "starSelected" : "starNoSelected"}>&#9733;</label>
                             <label className={item.Puntuacion >= 10 ? "starSelected" : "starNoSelected"}>&#9733;</label>
-                            
-                            </span>
+                        </span>
+                    </span>
                     </div>
                 </li>
             )}
@@ -249,7 +244,7 @@ class MostVoted extends Component {
                         : <p>Cargando</p>
                 }
             </div>
-            )
+        )
     }
 
     getMostVoted() {
@@ -264,7 +259,7 @@ const Votes = ({mostVoted}) => {
         <div>
 
         </div>
-        )
+    )
 }
 
 ReactDOM.render(<App />, document.getElementById("listado"));
