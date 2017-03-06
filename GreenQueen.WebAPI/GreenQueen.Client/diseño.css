@@ -160,6 +160,10 @@ ul.urls li#url-phone {
     color: grey;
 }
 
+#estrella:hover{
+    color: red;
+}
+
 /* DISEÑO PARA MÓVILES: */
 @media screen and (max-width: 480px) {
     ul:not(.urls) {

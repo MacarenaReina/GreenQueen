@@ -10,7 +10,6 @@
 namespace GreenQueen.WebAPI
 {
     using System;
-    using System.Collections.Generic;
     
     public partial class Puntuacion
     {

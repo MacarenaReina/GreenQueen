@@ -21798,7 +21798,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+//URL del servidor sobre la que hacer todas las peticiones
 var baseUrl = 'http://localhost:50150/api/';
+//Al no poder hacer login, creamos un user aleatorio cada vez que se visita la web -SAD-
+var user = Math.floor(Math.random() * 99999);
 
 var App = function (_Component) {
     _inherits(App, _Component);
@@ -21815,6 +21818,7 @@ var App = function (_Component) {
         };
         _this.selectDisc = _this.selectDisc.bind(_this);
         _this.selectInterpreter = _this.selectInterpreter.bind(_this);
+        _this.letsVote = _this.letsVote.bind(_this);
         return _this;
     }
 
@@ -21823,11 +21827,7 @@ var App = function (_Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            fetch(baseUrl + "Discos/GetDiscos").then(function (response) {
-                return response.json();
-            }).then(function (discs) {
-                return _this2.setState({ discs: discs });
-            });
+            this.getDiscs();
             fetch(baseUrl + "Interpretes/GetInterpretes").then(function (response) {
                 return response.json();
             }).then(function (interpreters) {
@@ -21862,7 +21862,7 @@ var App = function (_Component) {
                     _react2.default.createElement(
                         "ul",
                         { id: "listaDiscos", className: "list-group" },
-                        discs ? _react2.default.createElement(DiscList, { list: discs, selectDisc: this.selectDisc }) : _react2.default.createElement(
+                        discs ? _react2.default.createElement(DiscList, { list: discs, selectDisc: this.selectDisc, letsVote: this.letsVote }) : _react2.default.createElement(
                             "p",
                             null,
                             "Cargando..."
@@ -21910,17 +21910,31 @@ var App = function (_Component) {
             );
         }
 
+        //Función para recoger los discos (Ya que la vamos a usar además de la primera vez, siempre que votemos)
+
+    }, {
+        key: "getDiscs",
+        value: function getDiscs() {
+            var _this3 = this;
+
+            fetch(baseUrl + "Discos/GetDiscos").then(function (response) {
+                return response.json();
+            }).then(function (discs) {
+                return _this3.setState({ discs: discs });
+            });
+        }
+
         //Para buscar qué intérpretes y géneros tiene un disco al hacerle click
 
     }, {
         key: "selectDisc",
         value: function selectDisc(idInter, idDisc) {
-            var _this3 = this;
+            var _this4 = this;
 
             //Para seleccionar nuestro actual Disco
             var discs = this.state.discs;
             discs.map(function (disc) {
-                disc.IdDisco == idDisc ? disc.selected = true : disc.selected = false;
+                disc.IdDisco === idDisc ? disc.selected = true : disc.selected = false;
             });
             this.setState({
                 discs: discs
@@ -21928,7 +21942,7 @@ var App = function (_Component) {
 
             //Funciones para el filter del Interprete
             var sameId = function sameId(item) {
-                return item.IdInterprete == idInter;
+                return item.IdInterprete === idInter;
             };
             var notSameId = function notSameId(item) {
                 return item.IdInterprete !== idInter;
@@ -21952,7 +21966,7 @@ var App = function (_Component) {
             fetch(baseUrl + "Generos/GetGenerosDisco/" + idDisc).then(function (response) {
                 return response.json();
             }).then(function (genres) {
-                return _this3.setSelectedGenres(genres);
+                return _this4.setSelectedGenres(genres);
             });
         }
 
@@ -21961,12 +21975,12 @@ var App = function (_Component) {
     }, {
         key: "selectInterpreter",
         value: function selectInterpreter(idInter) {
-            var _this4 = this;
+            var _this5 = this;
 
             //Para seleccionar nuestro actual Interprete
             var interpreters = this.state.interpreters;
             interpreters.map(function (interpreter) {
-                interpreter.IdInterprete == idInter ? interpreter.selected = true : interpreter.selected = false;
+                interpreter.IdInterprete === idInter ? interpreter.selected = true : interpreter.selected = false;
             });
             this.setState({
                 interpreters: interpreters
@@ -21974,7 +21988,7 @@ var App = function (_Component) {
 
             //Funciones para el filter del Disc
             var sameId = function sameId(item) {
-                return item.IdInterprete == idInter;
+                return item.IdInterprete === idInter;
             };
 
             //Para ordenar los discos
@@ -21984,7 +21998,7 @@ var App = function (_Component) {
                 var index = void 0;
                 updatedList.map(function (uList) {
                     uList.selected = false;
-                    if (uList.IdDisco == disc.IdDisco) {
+                    if (uList.IdDisco === disc.IdDisco) {
                         index = updatedList.indexOf(uList);
                     }
                 });
@@ -22000,7 +22014,7 @@ var App = function (_Component) {
             fetch(baseUrl + "Generos/GetGenerosInterprete/" + idInter).then(function (response) {
                 return response.json();
             }).then(function (genres) {
-                return _this4.setSelectedGenres(genres);
+                return _this5.setSelectedGenres(genres);
             });
         }
 
@@ -22015,7 +22029,7 @@ var App = function (_Component) {
                 var index = void 0;
                 updatedList.map(function (uList) {
                     uList.selected = false;
-                    if (uList.IdTipo == genre.IdTipo) {
+                    if (uList.IdTipo === genre.IdTipo) {
                         index = updatedList.indexOf(uList);
                     }
                 });
@@ -22027,6 +22041,26 @@ var App = function (_Component) {
                 genres: genres
             });
         }
+
+        //Función para votar
+        //Falta por arreglar la parte servidor (está hecho a ciegas). No sé si los then están bien así, esperemos que sí D:
+
+    }, {
+        key: "letsVote",
+        value: function letsVote(idDisc, vote) {
+            if (user !== null) {
+                var data = {
+                    IdCliente: user,
+                    IdDisco: idDisc,
+                    Puntuacion1: vote
+                };
+                fetch(baseUrl + "Puntuaciones/PostPuntuacion", {
+                    method: "POST",
+                    body: data
+                }).then(toastr.success("¡Voto recibido!")).then(this.getDiscs());
+            }
+            toastr.error("Por favor, inicia sesión antes");
+        }
     }]);
 
     return App;
@@ -22034,7 +22068,8 @@ var App = function (_Component) {
 
 var DiscList = function DiscList(_ref) {
     var list = _ref.list,
-        selectDisc = _ref.selectDisc;
+        selectDisc = _ref.selectDisc,
+        letsVote = _ref.letsVote;
 
     return _react2.default.createElement(
         "div",
@@ -22042,7 +22077,7 @@ var DiscList = function DiscList(_ref) {
         list.map(function (item) {
             return _react2.default.createElement(
                 "li",
-                { className: item.selected == true ? "list-group-item selec" : "list-group-item", key: item.IdDisco },
+                { className: item.selected === true ? "list-group-item selec" : "list-group-item", key: item.IdDisco },
                 _react2.default.createElement(
                     "span",
                     { onClick: function onClick() {
@@ -22062,52 +22097,72 @@ var DiscList = function DiscList(_ref) {
                             null,
                             _react2.default.createElement(
                                 "label",
-                                { className: item.Puntuacion >= 1 ? "starSelected" : "starNoSelected" },
+                                { id: "estrella", onClick: function onClick() {
+                                        return letsVote(item.IdDisco, 1);
+                                    }, className: item.Puntuacion >= 1 ? "starSelected" : "starNoSelected" },
                                 "\u2605"
                             ),
                             _react2.default.createElement(
                                 "label",
-                                { className: item.Puntuacion >= 2 ? "starSelected" : "starNoSelected" },
+                                { id: "estrella", onClick: function onClick() {
+                                        return letsVote(item.IdDisco, 2);
+                                    }, className: item.Puntuacion >= 2 ? "starSelected" : "starNoSelected" },
                                 "\u2605"
                             ),
                             _react2.default.createElement(
                                 "label",
-                                { className: item.Puntuacion >= 3 ? "starSelected" : "starNoSelected" },
+                                { id: "estrella", onClick: function onClick() {
+                                        return letsVote(item.IdDisco, 3);
+                                    }, className: item.Puntuacion >= 3 ? "starSelected" : "starNoSelected" },
                                 "\u2605"
                             ),
                             _react2.default.createElement(
                                 "label",
-                                { className: item.Puntuacion >= 4 ? "starSelected" : "starNoSelected" },
+                                { id: "estrella", onClick: function onClick() {
+                                        return letsVote(item.IdDisco, 4);
+                                    }, className: item.Puntuacion >= 4 ? "starSelected" : "starNoSelected" },
                                 "\u2605"
                             ),
                             _react2.default.createElement(
                                 "label",
-                                { className: item.Puntuacion >= 5 ? "starSelected" : "starNoSelected" },
+                                { id: "estrella", onClick: function onClick() {
+                                        return letsVote(item.IdDisco, 5);
+                                    }, className: item.Puntuacion >= 5 ? "starSelected" : "starNoSelected" },
                                 "\u2605"
                             ),
                             _react2.default.createElement(
                                 "label",
-                                { className: item.Puntuacion >= 6 ? "starSelected" : "starNoSelected" },
+                                { id: "estrella", onClick: function onClick() {
+                                        return letsVote(item.IdDisco, 6);
+                                    }, className: item.Puntuacion >= 6 ? "starSelected" : "starNoSelected" },
                                 "\u2605"
                             ),
                             _react2.default.createElement(
                                 "label",
-                                { className: item.Puntuacion >= 7 ? "starSelected" : "starNoSelected" },
+                                { id: "estrella", onClick: function onClick() {
+                                        return letsVote(item.IdDisco, 7);
+                                    }, className: item.Puntuacion >= 7 ? "starSelected" : "starNoSelected" },
                                 "\u2605"
                             ),
                             _react2.default.createElement(
                                 "label",
-                                { className: item.Puntuacion >= 8 ? "starSelected" : "starNoSelected" },
+                                { id: "estrella", onClick: function onClick() {
+                                        return letsVote(item.IdDisco, 8);
+                                    }, className: item.Puntuacion >= 8 ? "starSelected" : "starNoSelected" },
                                 "\u2605"
                             ),
                             _react2.default.createElement(
                                 "label",
-                                { className: item.Puntuacion >= 9 ? "starSelected" : "starNoSelected" },
+                                { id: "estrella", onClick: function onClick() {
+                                        return letsVote(item.IdDisco, 9);
+                                    }, className: item.Puntuacion >= 9 ? "starSelected" : "starNoSelected" },
                                 "\u2605"
                             ),
                             _react2.default.createElement(
                                 "label",
-                                { className: item.Puntuacion >= 10 ? "starSelected" : "starNoSelected" },
+                                { id: "estrella", onClick: function onClick() {
+                                        return letsVote(item.IdDisco, 10);
+                                    }, className: item.Puntuacion >= 10 ? "starSelected" : "starNoSelected" },
                                 "\u2605"
                             )
                         )
@@ -22128,7 +22183,7 @@ var InterpretersList = function InterpretersList(_ref2) {
         list.map(function (item) {
             return _react2.default.createElement(
                 "li",
-                { className: item.selected == true ? "list-group-item selec" : "list-group-item", key: item.IdInterprete, onClick: function onClick() {
+                { className: item.selected === true ? "list-group-item selec" : "list-group-item", key: item.IdInterprete, onClick: function onClick() {
                         return selectInterpreter(item.IdInterprete);
                     } },
                 item.Interprete1
@@ -22146,7 +22201,7 @@ var GenresList = function GenresList(_ref3) {
         list.map(function (item) {
             return _react2.default.createElement(
                 "li",
-                { className: item.selected == true ? "list-group-item selec" : "list-group-item", key: item.IdTipo },
+                { className: item.selected === true ? "list-group-item selec" : "list-group-item", key: item.IdTipo },
                 item.tipo1,
                 item.tipo
             );
@@ -22154,64 +22209,7 @@ var GenresList = function GenresList(_ref3) {
     );
 };
 
-var MostVoted = function (_Component2) {
-    _inherits(MostVoted, _Component2);
-
-    function MostVoted(props) {
-        _classCallCheck(this, MostVoted);
-
-        var _this5 = _possibleConstructorReturn(this, (MostVoted.__proto__ || Object.getPrototypeOf(MostVoted)).call(this, props));
-
-        _this5.state = {
-            mostVoted: null
-        };
-        return _this5;
-    }
-
-    _createClass(MostVoted, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            this.getMostVoted();
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var mostVoted = this.state.mostVoted;
-
-            return _react2.default.createElement(
-                "div",
-                null,
-                mostVoted ? _react2.default.createElement(Votes, { list: mostVoted }) : _react2.default.createElement(
-                    "p",
-                    null,
-                    "Cargando"
-                )
-            );
-        }
-    }, {
-        key: "getMostVoted",
-        value: function getMostVoted() {
-            var _this6 = this;
-
-            fetch(baseUrl + "Discos/MejoresDiscos").then(function (response) {
-                return response.json();
-            }).then(function (mostVoted) {
-                return _this6.setState({ mostVoted: mostVoted });
-            });
-        }
-    }]);
-
-    return MostVoted;
-}(_react.Component);
-
-var Votes = function Votes(_ref4) {
-    var mostVoted = _ref4.mostVoted;
-
-    return _react2.default.createElement("div", null);
-};
-
 _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById("listado"));
-_reactDom2.default.render(_react2.default.createElement(MostVoted, null), document.getElementById("mostrarVotos"));
 
 /***/ })
 /******/ ]);
