@@ -106,13 +106,13 @@ ul.urls li#url-phone {
     left: 1115px;
 }
 
-.SamplePath, line {
+#logo .SamplePath, #logo line {
         fill: none;
         stroke: #009933; /* green */
         stroke-width: 20
     }
 
-circle, text {
+#logo circle, #logo text {
     fill: #009933; /* green */
 }
 
@@ -133,7 +133,7 @@ circle, text {
     transform: translate(31px, 335px) rotate(167deg);
 }
 
-text {
+#logo text {
         font-size: 155px;
         /*font-family: 'Indie Flower', cursive;
         font-family: 'Mr Dafoe', cursive;

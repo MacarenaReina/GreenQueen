@@ -8,7 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Gloria+Hallelujah|Indie+Flower|Lobster|Mr+Dafoe|Pacifico|Shadows+Into+Light|VT323" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
     <link rel="stylesheet" type="text/css" href="diseño.css">
 </head>
 <body>
@@ -18,7 +19,7 @@
         </div>
         <div class="col-sm-4">
             <a href="#listado">
-                <svg width="8cm" height="5cm" viewBox="0 0 1000 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <svg id="logo" width="8cm" height="5cm" viewBox="0 0 1000 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
                     <!--<path class="SamplePath" d="M120,200 C100,100 250,100 250,200 S400,300 400,200" />  -->
                     <g>
                         <path class="SamplePath" d="M140,200 C140,100 270,100 270,200" />
@@ -149,7 +150,7 @@
       $(document).ready(function()
       {
         $(".nav-tabs a").click(function(){
-          $(this).tab('show');
+            $(this).tab('show');
         });
 
         var teclado = $("#teclado");
@@ -158,6 +159,57 @@
             var boton = $("<button class='btn btn-default' onclick='escribirClave(this)'></button>").text(contador);
             $(teclado).append(boton);
         }
+
+        //RECOGE LOS 5 MEJORES DISCOS Y HACE LA GRÁFICA:
+        var divVotos = $("#mostrarVotos");
+        
+          //"method": "GET",
+        $.ajax({
+            "url": "http://localhost:50150/api/Discos/MejoresDiscos",
+            "type": "get",
+            "dataType": "json",
+            "success": function (discos) {
+                google.charts.load('current', { packages: ['corechart'] });
+                google.charts.setOnLoadCallback(drawChart);
+
+                var discosData = [];
+
+                $.each(discos, function (i, disco) {
+                    console.log(disco.Titulo);
+                    discosData.push([disco.Titulo, disco.Puntuacion]); //, "#009933"
+                });
+
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Disco', 'Puntuación'], //, { role: 'style' }
+                        discosData[0],
+                        discosData[1],
+                        discosData[2],
+                        discosData[3],
+                        discosData[4]
+                    ]);
+
+                    var view = new google.visualization.DataView(data);
+
+                    var options = {
+                        width: 1000,
+                        height: 370,
+                        bar: { groupWidth: "35%" },
+                        legend: { position: "none" },
+                        hAxis: {
+                            minValue: 0,
+                            ticks: [0, 2, 4, 6, 8, 10]
+                        },
+                        backgroundColor: "#ccccff"
+                    };
+
+                    var chart = new google.visualization.BarChart(document.getElementById("mostrarVotos"));
+                    chart.draw(view, options);
+                }
+                
+            }
+        });
+
       });
 
       function escribirClave(contenido)
@@ -166,9 +218,13 @@
           $("#contrasenia").val(valorBoton);
       }
 
-        //MOSTRAR LISTA DE DISCOS, INTERPRETES O GÉNEROS EN MÓVILES:
-      $(window).resize(function () {
+        //OCULTAR LISTA DE DISCOS, INTERPRETES O GÉNEROS EN MÓVILES
+        //Y MOSTRARLAS SÓLO CUANDO SE HACE CLICK EN EL "TITULO":
+      $(window).resize(function () {          
           if ($(window).width() <= 480) {
+              $(".title").each(function () {
+                  $(this).next().hide();
+              });
               var mostrando = null;
               $(".title").on("click", function() {
                   if (mostrando != null) {
@@ -177,16 +233,13 @@
                   $(this).next().show();
                   mostrando = $(this).next();
               });
-
           } else {
-              $(".title").each(function (event) {
+              //DESACTIVAR EL EVENTO ON CLICK CUANDO NO SON MÓVILES Y MOSTRAR TODAS LAS LISTAS:
+              $(".title").off("click");
+              $(".title").each(function () {
                   $(this).next().show();
               });
-              $(".title").on("click", function () {
-                  
-              });
           }
-
       });
       
 
