@@ -183,4 +183,12 @@ ul.urls li#url-phone {
         color: cadetblue;
         cursor: pointer;
     }
+    
+    #cabecera div:last-child { 
+        text-align: left; 
+    }
+    #cabecera div { 
+       text-align: left; 
+
+    }
 }
