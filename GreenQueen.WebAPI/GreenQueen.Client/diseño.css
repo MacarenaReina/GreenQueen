@@ -12,7 +12,7 @@ span { margin-right: 0.5em; margin-left:0.5em; }
 #prueba3 { clear: left; }
 a:hover { text-decoration: none; }
 
-ul {
+ul:not(.urls) {
     overflow: auto;
     max-height: 40em;
 }
@@ -144,4 +144,38 @@ text {
 .selec {
     background-color: #66cc99;
     font-weight: bold;
+}
+
+
+.starSelected {
+    color: yellow;
+}
+
+.starNoSelected {
+    color: grey;
+}
+
+/* DISEÑO PARA MÓVILES: */
+@media screen and (max-width: 480px) {
+    /*.title {
+        background-color: lightgreen;
+    }*/
+
+    ul:not(.urls) {
+        display: none;
+    }
+
+    .parallax {
+        min-height: 250px;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    h2:hover {
+        font-weight: bold;
+        color: cadetblue;
+        cursor: pointer;
+    }
 }

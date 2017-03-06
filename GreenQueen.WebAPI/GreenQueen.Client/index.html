@@ -165,6 +165,16 @@
           $("#contrasenia").val(valorBoton);
       }
 
+        //MOSTRAR LISTA DE DISCOS, INTERPRETES O GÉNEROS EN MÓVILES:
+      var mostrando = null;
+      $(".title").on("click", function (event) {
+          if (mostrando != null) {
+              mostrando.hide();
+          }
+          $(this).next().show();
+          mostrando = $(this);
+      });
+
     </script>
     <script src="./bundle.js"></script>
 </body>

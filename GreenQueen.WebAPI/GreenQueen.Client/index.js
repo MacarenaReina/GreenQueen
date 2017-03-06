@@ -32,7 +32,7 @@ class App extends Component {
         return (
             <div>
                 <div className="col-sm-4">
-                    <h2><span className="glyphicon glyphicon-cd"></span>Discos</h2>
+                    <h2 className="title"><span className="glyphicon glyphicon-cd"></span>Discos</h2>
                     <ul id="listaDiscos" className="list-group">
                         {discs
                             ? <DiscList list={discs} selectDisc={this.selectDisc} />
@@ -41,7 +41,7 @@ class App extends Component {
                     </ul>
                 </div>
                 <div className="col-sm-4">
-                    <h2><span className="glyphicon glyphicon-user"></span>Intérpretes</h2>
+                    <h2 className="title"><span className="glyphicon glyphicon-user"></span>Intérpretes</h2>
                     <ul id="listaInterpretes" className="list-group">
                         {interpreters
                             ? <InterpretersList list={interpreters} selectInterpreter={this.selectInterpreter} />
@@ -50,7 +50,7 @@ class App extends Component {
                     </ul>
                 </div>
                 <div className="col-sm-4">
-                    <h2><span className="glyphicon glyphicon-music"></span>Géneros</h2>
+                    <h2 className="title"><span className="glyphicon glyphicon-music"></span>Géneros</h2>
                     <ul id="listaGeneros" className="list-group">
                         {genres
                             ? <GenresList list={genres} />
@@ -175,11 +175,26 @@ const DiscList = ({list, selectDisc}) => {
                         item.Agno
                             ? item.Agno
                             : "Desconocido"
-                    }</span><span>Puntuación: {
-                            item.Puntuacion
-                                ? item.Puntuacion
-                                : "No hay"
-                    }</span></div>
+                    }</span>
+                    //<span>Puntuación: {
+                    //        item.Puntuacion
+                    //            ? item.Puntuacion
+                    //            : "No hay"
+                    //        }</span>
+                        <span>
+                            <label className={item.Puntuacion >= 1 ? "starSelected" : "starNoSelected"}>&#9733;</label>
+                            <label className={item.Puntuacion >= 2 ? "starSelected" : "starNoSelected"}>&#9733;</label>
+                            <label className={item.Puntuacion >= 3 ? "starSelected" : "starNoSelected"}>&#9733;</label>
+                            <label className={item.Puntuacion >= 4 ? "starSelected" : "starNoSelected"}>&#9733;</label>
+                            <label className={item.Puntuacion >= 5 ? "starSelected" : "starNoSelected"}>&#9733;</label>
+                            <label className={item.Puntuacion >= 6 ? "starSelected" : "starNoSelected"}>&#9733;</label>
+                            <label className={item.Puntuacion >= 7 ? "starSelected" : "starNoSelected"}>&#9733;</label>
+                            <label className={item.Puntuacion >= 8 ? "starSelected" : "starNoSelected"}>&#9733;</label>
+                            <label className={item.Puntuacion >= 9 ? "starSelected" : "starNoSelected"}>&#9733;</label>
+                            <label className={item.Puntuacion >= 10 ? "starSelected" : "starNoSelected"}>&#9733;</label>
+                            
+                            </span>
+                    </div>
                 </li>
             )}
         </div>
