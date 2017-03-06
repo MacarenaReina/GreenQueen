@@ -12,6 +12,11 @@ span { margin-right: 0.5em; margin-left:0.5em; }
 #prueba3 { clear: left; }
 a:hover { text-decoration: none; }
 
+label[class^="star"] {
+    padding: 1px 0;
+    margin-bottom: 0;
+}
+
 ul:not(.urls) {
     overflow: auto;
     max-height: 40em;
@@ -157,10 +162,6 @@ text {
 
 /* DISEÑO PARA MÓVILES: */
 @media screen and (max-width: 480px) {
-    /*.title {
-        background-color: lightgreen;
-    }*/
-
     ul:not(.urls) {
         display: none;
     }

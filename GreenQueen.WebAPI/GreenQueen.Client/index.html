@@ -144,6 +144,7 @@
         </ul>
     </div>
 
+    <script src="./bundle.js"></script>
     <script>       
       $(document).ready(function()
       {
@@ -166,16 +167,29 @@
       }
 
         //MOSTRAR LISTA DE DISCOS, INTERPRETES O GÉNEROS EN MÓVILES:
-      var mostrando = null;
-      $(".title").on("click", function (event) {
-          if (mostrando != null) {
-              mostrando.hide();
+      $(window).resize(function () {
+          if ($(window).width() <= 480) {
+              var mostrando = null;
+              $(".title").on("click", function() {
+                  if (mostrando != null) {
+                      mostrando.hide();
+                  }
+                  $(this).next().show();
+                  mostrando = $(this).next();
+              });
+
+          } else {
+              $(".title").each(function (event) {
+                  $(this).next().show();
+              });
+              $(".title").on("click", function () {
+                  
+              });
           }
-          $(this).next().show();
-          mostrando = $(this);
+
       });
+      
 
     </script>
-    <script src="./bundle.js"></script>
 </body>
 </html>

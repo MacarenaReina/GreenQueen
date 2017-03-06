@@ -148,6 +148,7 @@
     <Compile Include="Controllers\DiscosController.cs" />
     <Compile Include="Controllers\GenerosController.cs" />
     <Compile Include="Controllers\InterpretesController.cs" />
+    <Compile Include="Controllers\PuntuacionesController.cs" />
     <Compile Include="Disco.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
